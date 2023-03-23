@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ReserveTicketResponse {
+public class ReservedTicketResponse {
 
     @JsonProperty("flightId")
     private String flightId;
@@ -15,11 +15,11 @@ public class ReserveTicketResponse {
     @JsonProperty("ticketId")
     private String ticketId;
 
-    @JsonProperty("departureCity")
-    private String departureCity;
+    @JsonProperty("departureLocation")
+    private String departureLocation;
 
-    @JsonProperty("arrivalCity")
-    private String arrivalCity;
+    @JsonProperty("arrivalLocation")
+    private String arrivalLocation;
 
     @JsonProperty("dateOfReservation")
     private String dateOfReservation;
@@ -62,19 +62,19 @@ public class ReserveTicketResponse {
     }
 
     public String getDepartureCity() {
-        return departureCity;
+        return departureLocation;
     }
 
-    public void setDepartureCity(String departureCity) {
-        this.departureCity = departureCity;
+    public void setDepartureCity(String departureLocation) {
+        this.departureLocation = departureLocation;
     }
 
     public String getArrivalCity() {
-        return arrivalCity;
+        return arrivalLocation;
     }
 
-    public void setArrivalCity(String arrivalCity) {
-        this.arrivalCity = arrivalCity;
+    public void setArrivalCity(String arrivalLocation) {
+        this.arrivalLocation = arrivalLocation;
     }
 
     public String getDateOfReservation() {
