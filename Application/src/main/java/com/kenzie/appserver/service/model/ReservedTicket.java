@@ -46,6 +46,25 @@ public class ReservedTicket {
         this.purchasedTicket = purchasedTicket;
     }
 
+    public ReservedTicket(String flightId,
+                          String flightName,
+                          String ticketId,
+                          String departureLocation,
+                          String arrivalLocation,
+                          String dateOfReservation,
+                          Integer numberOfSeatsReserved) {
+        this.flightId = flightId;
+        this.flightName = flightName;
+        this.ticketId = ticketId;
+        this.departureLocation = departureLocation;
+        this.arrivalLocation = arrivalLocation;
+        this.dateOfReservation = dateOfReservation;
+        this.reservationClosed = false;
+        this.dateOfReservationClosed = null;
+        this.numberOfSeatsReserved = numberOfSeatsReserved;
+        this.purchasedTicket = false;
+    }
+
     public String getFlightId() {
         return flightId;
     }
