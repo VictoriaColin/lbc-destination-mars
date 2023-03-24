@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PurchasedTicketResponse {
 
+    //added in flight name while creating PurchasedTicketController
+    @JsonProperty("flightName")
+    private String flightName;
     @JsonProperty("ticketId")
     private String ticketId;
 
@@ -18,6 +21,14 @@ public class PurchasedTicketResponse {
     @JsonProperty("pricePaid")
     private Double pricePaid;
 
+
+    public String getFlightName() {
+        return flightName;
+    }
+
+    public void setFlightName(String flightName) {
+        this.flightName = flightName;
+    }
 
     public String getTicketId() {
         return ticketId;

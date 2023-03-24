@@ -26,7 +26,7 @@ public class PurchasedTicketRecord {
      * Placing it in for now- can alter after discussions with coaches/Nathan/Peter
      */
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = "FlightId", attributeName = "FlightId")
+//    @DynamoDBIndexHashKey(globalSecondaryIndexName = "FlightId", attributeName = "FlightId")
     public String getFlightId() {
         return flightId;
     }
