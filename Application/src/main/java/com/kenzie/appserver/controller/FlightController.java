@@ -1,5 +1,6 @@
 package com.kenzie.appserver.controller;
 
+import com.kenzie.appserver.controller.model.FlightUpdateRequest;
 import com.kenzie.appserver.controller.model.GetFlightRequest;
 import com.kenzie.appserver.controller.model.GetFlightResponse;
 import com.kenzie.appserver.service.FlightService;
@@ -14,7 +15,6 @@ import java.util.List;
 import static java.util.UUID.randomUUID;
 
 @RestController
-
 @RequestMapping("/flight")
 public class FlightController {
 
@@ -35,22 +35,9 @@ public class FlightController {
         GetFlightResponse getFlightResponse = createFlightResponse(flight);
         return ResponseEntity.ok(getFlightResponse);
     }
-    private GetFlightResponse createFlightResponse(Flight flight) {
-        GetFlightResponse getFlightResponse = new GetFlightResponse();
-        getFlightResponse.setId(flight.getId());
-        getFlightResponse.setFlightName(flight.getFlightName());
-        getFlightResponse.setDate(flight.getDate());
-        getFlightResponse.setArrivalLocation(flight.getArrivalLocation());
-        getFlightResponse.setDepartureLocation(flight.getDepartureLocation());
-        // todo: will have to make a change here
-        getFlightResponse.setNumberOfSeatsReserved(flight.getTotalSeatCapacity());
-        getFlightResponse.setTicketBasePrice(flight.getTicketBasePrice());
-        getFlightResponse.setReservationClosed(flight.getReservationClosed());
 
-        return getFlightResponse;
-    }
     @GetMapping
-    public ResponseEntity<List<GetFlightResponse>> getAllConcerts() {
+    public ResponseEntity<List<GetFlightResponse>> getAllFlights() {
         List<Flight> flights = flightService.findAllFlights();
         // If there are no flights, then return a 204
         if (flights == null ||  flights.isEmpty()) {
@@ -67,7 +54,7 @@ public class FlightController {
     // todo
     @PostMapping
     public ResponseEntity<GetFlightResponse> addNewFlight(@RequestBody GetFlightRequest getFlightRequest) {
-        //System.out.println("POST /concerts " +" name " +concertCreateRequest.getName());
+        //System.out.println("POST /flight " +" name " +getFlightRequest.getName());
 
         Flight flight = new Flight(randomUUID().toString(),
                 getFlightRequest.getName(),
@@ -84,7 +71,7 @@ public class FlightController {
         return ResponseEntity.created(URI.create("/flight/" + flightResponse.getId())).body(flightResponse);
     }
     @PutMapping
-    public ResponseEntity<GetFlightResponse> updateConcert(@RequestBody FlightUpdateRequest flightUpdateRequest) {
+    public ResponseEntity<GetFlightResponse> updateFlight(@RequestBody FlightUpdateRequest flightUpdateRequest) {
         Flight flight = new Flight(flightUpdateRequest.getId(),
                 flightUpdateRequest.getFlightName(),
                 flightUpdateRequest.getDate(),
@@ -101,6 +88,22 @@ public class FlightController {
         flightService.deleteFlight(flightId);
         //return ResponseEntity.noContent().build();
         return ResponseEntity.status((204)).build();
+    }
+
+    // Helper method
+    private GetFlightResponse createFlightResponse(Flight flight) {
+        GetFlightResponse getFlightResponse = new GetFlightResponse();
+        getFlightResponse.setId(flight.getId());
+        getFlightResponse.setFlightName(flight.getFlightName());
+        getFlightResponse.setDate(flight.getDate());
+        getFlightResponse.setArrivalLocation(flight.getArrivalLocation());
+        getFlightResponse.setDepartureLocation(flight.getDepartureLocation());
+        // todo: will have to make a change here
+        getFlightResponse.setNumberOfSeatsReserved(flight.getTotalSeatCapacity());
+        getFlightResponse.setTicketBasePrice(flight.getTicketBasePrice());
+        getFlightResponse.setReservationClosed(flight.getReservationClosed());
+
+        return getFlightResponse;
     }
 
 

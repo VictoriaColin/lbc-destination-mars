@@ -4,6 +4,7 @@ import com.kenzie.appserver.repositories.ReservedTicketRepository;
 import com.kenzie.appserver.repositories.model.ReservedTicketRecord;
 import com.kenzie.appserver.service.model.Flight;
 import com.kenzie.appserver.service.model.ReservedTicket;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,6 +21,7 @@ public class ReservedTicketService {
     private ReservedTicketRepository reservedTicketRepository;
     private final ConcurrentLinkedQueue<ReservedTicket> reservedTicketsQueue;
 
+    @Autowired
     public ReservedTicketService(FlightService flightService,
                                  ReservedTicketRepository reservedTicketRepository,
                                  ConcurrentLinkedQueue<ReservedTicket> reservedTicketsQueue) {
