@@ -10,7 +10,7 @@ import java.util.Objects;
 public class FlightRecord {
 
     private String id;
-    private String name;
+    private String flightName;
     private String date;
     private String departureLocation;
     private String arrivalLocation;
@@ -23,9 +23,9 @@ public class FlightRecord {
         return id;
     }
 
-    @DynamoDBAttribute(attributeName = "Name")
-    public String getName() {
-        return name;
+    @DynamoDBAttribute(attributeName = "FlightName")
+    public String getFlightName() {
+        return flightName;
     }
 
     @DynamoDBAttribute(attributeName = "Date")
@@ -62,8 +62,8 @@ public class FlightRecord {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFlightName(String flightName) {
+        this.flightName = flightName;
     }
 
     public void setDate(String date) {

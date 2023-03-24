@@ -7,8 +7,8 @@ public class GetFlightResponse {
     @JsonProperty("id")
     private String id;
 
-    @JsonProperty("AircraftName")
-    private String aircraftName;
+    @JsonProperty("flightName")
+    private String flightName;
 
     @JsonProperty("date")
     private String date;
@@ -36,12 +36,12 @@ public class GetFlightResponse {
         this.id = id;
     }
 
-    public String getName() {
-        return aircraftName;
+    public String getFlightName() {
+        return flightName;
     }
 
-    public void setName(String aircraftName) {
-        this.aircraftName = aircraftName;
+    public void setFlightName(String flightName) {
+        this.flightName = flightName;
     }
 
     public String getDate() {
