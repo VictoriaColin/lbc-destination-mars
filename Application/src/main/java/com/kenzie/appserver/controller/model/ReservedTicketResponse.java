@@ -61,19 +61,19 @@ public class ReservedTicketResponse {
         this.ticketId = ticketId;
     }
 
-    public String getDepartureCity() {
+    public String getDepartureLocation() {
         return departureLocation;
     }
 
-    public void setDepartureCity(String departureLocation) {
+    public void setDepartureLocation(String departureLocation) {
         this.departureLocation = departureLocation;
     }
 
-    public String getArrivalCity() {
+    public String getArrivalLocation() {
         return arrivalLocation;
     }
 
-    public void setArrivalCity(String arrivalLocation) {
+    public void setArrivalLocation(String arrivalLocation) {
         this.arrivalLocation = arrivalLocation;
     }
 
