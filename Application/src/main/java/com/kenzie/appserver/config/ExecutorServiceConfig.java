@@ -1,5 +1,6 @@
 package com.kenzie.appserver.config;
 
+import com.kenzie.appserver.service.model.ReservedTicket;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
@@ -9,6 +10,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Configuration
 public class ExecutorServiceConfig {
+    @Bean
+    public ConcurrentLinkedQueue<ReservedTicket> reservedTicketQueue(){
+        return new ConcurrentLinkedQueue<>();
+    }
 
     @Bean
     public TaskExecutor executorService() {

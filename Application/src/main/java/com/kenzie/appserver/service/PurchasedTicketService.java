@@ -5,6 +5,7 @@ import com.kenzie.appserver.repositories.model.PurchasedTicketRecord;
 import com.kenzie.appserver.service.model.Flight;
 import com.kenzie.appserver.service.model.PurchasedTicket;
 import com.kenzie.appserver.service.model.ReservedTicket;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,6 +24,7 @@ public class PurchasedTicketService {
     //ReservedTicket model
     private FlightService flightService;
 
+    @Autowired
     public PurchasedTicketService(PurchasedTicketRepository purchasedTicketRepository, 
                                   ReservedTicketService reservedTicketService) {
         this.purchasedTicketRepository = purchasedTicketRepository;

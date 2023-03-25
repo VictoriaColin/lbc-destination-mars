@@ -1,10 +1,12 @@
 package com.kenzie.appserver.service;
 
+//import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class FlightService {
 
 
     @Autowired
-    public FlightService(FlightRepository flightRepository, CacheStore cache) {
+    public FlightService(FlightRepository flightRepository) {// , CacheStore cache
         this.flightRepository = flightRepository;
         this.cache = cache;
 
