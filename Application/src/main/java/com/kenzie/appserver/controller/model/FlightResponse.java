@@ -3,9 +3,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class GetFlightResponse {
-    @JsonProperty("id")
-    private String id;
+public class FlightResponse {
+    @JsonProperty("flightId")
+    private String flightId;
 
     @JsonProperty("flightName")
     private String flightName;
@@ -28,12 +28,12 @@ public class GetFlightResponse {
     @JsonProperty("reservationClosed")
     private Boolean reservationClosed;
 
-    public String getId() {
-        return id;
+    public String getFlightId() {
+        return flightId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 
     public String getFlightName() {

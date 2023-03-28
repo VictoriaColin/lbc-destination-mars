@@ -18,13 +18,13 @@ public class FlightService {
     private FlightRepository flightRepository;
     private CacheStore cache;
 
-
     @Autowired
-    public FlightService(FlightRepository flightRepository) {// , CacheStore cache
+    public FlightService(FlightRepository flightRepository, CacheStore cache) {
         this.flightRepository = flightRepository;
         this.cache = cache;
 
     }
+
     public List<Flight> findAllFlights() {
         List<Flight> flights = new ArrayList<>();
 
@@ -81,7 +81,7 @@ public class FlightService {
 
         // if flight found, cache it
         if (flightFromBackendService != null) {
-            cache.add(flightFromBackendService.getId(), flightFromBackendService);
+            cache.add(flightFromBackendService.getFlightId(), flightFromBackendService);
         }
         // return flight
         return flightFromBackendService;
@@ -91,7 +91,7 @@ public class FlightService {
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setFlightName(flight.getFlightName());
         flightRecord.setDate(flight.getDate());
-        flightRecord.setId(flight.getId());
+        flightRecord.setId(flight.getFlightId());
         flightRecord.setDepartureLocation(flight.getDepartureLocation());
         flightRecord.setArrivalLocation(flight.getArrivalLocation());
         flightRecord.setTotalSeatCapacity(flight.getTotalSeatCapacity());
@@ -102,18 +102,18 @@ public class FlightService {
     }
 
     public void updateFlight(Flight flight) {
-        if (flightRepository.existsById(flight.getId())) {
+        if (flightRepository.existsById(flight.getFlightId())) {
             FlightRecord flightRecord = new FlightRecord();
-            flightRecord.setId(flight.getId());
+            flightRecord.setId(flight.getFlightId());
             flightRecord.setDate(flight.getDate());
-            flightRecord.setId(flight.getId());
+            flightRecord.setId(flight.getFlightId());
             flightRecord.setDepartureLocation(flight.getDepartureLocation());
             flightRecord.setArrivalLocation(flight.getArrivalLocation());
             flightRecord.setTotalSeatCapacity(flight.getTotalSeatCapacity());
             flightRecord.setTicketBasePrice(flight.getTicketBasePrice());
             flightRecord.setReservationClosed(flight.getReservationClosed());
             flightRepository.save(flightRecord);
-            cache.evict(flight.getId());
+            cache.evict(flight.getFlightId());
         }
     }
 
@@ -125,5 +125,4 @@ public class FlightService {
             cache.evict(flightId);
         }
     }
-
 }

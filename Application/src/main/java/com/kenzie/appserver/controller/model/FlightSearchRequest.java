@@ -7,7 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
-public class GetFlightRequest {
+public class FlightSearchRequest {
     @NotEmpty
     @JsonProperty("name")
     private String name;

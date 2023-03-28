@@ -22,6 +22,8 @@ public class PurchasedTicketService {
     //adding in to get flight price
     //may just be easier to add in the pricePaid into the 
     //ReservedTicket model
+
+    @Autowired
     private FlightService flightService;
 
     @Autowired

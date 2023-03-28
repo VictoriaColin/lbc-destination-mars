@@ -20,7 +20,7 @@ public class CloseReservationTask implements Runnable{
         this.reservedTicketsQueue = reservedTicketsQueue;
     }
 
-    // step 1: Deque the ticket from the top /head of the queue
+    // step 1: Deque the ticket from the front/head of the queue
     // step 2: by id get the reservedTicket record from repo
     // step 3: get dateOfReservation from the reservedTicket
     // Step 4: get difference between the dateOfReservation and the current date now.
