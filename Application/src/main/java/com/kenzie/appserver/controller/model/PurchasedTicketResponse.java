@@ -21,6 +21,10 @@ public class PurchasedTicketResponse {
     @JsonProperty("pricePaid")
     private Double pricePaid;
 
+    // credit card validation failed or successful
+    //private boolean cardValid;
+
+
 
     public String getFlightName() {
         return flightName;
