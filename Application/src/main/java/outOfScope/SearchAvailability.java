@@ -17,25 +17,36 @@ public class SearchAvailability {
 
     public List<Flight> findAllConcerts() {
         List<Flight> flights = new ArrayList<>();
-
-
         Iterable<FlightRecord> flightIterator = flightRepository.findAll();
-        for (FlightRecord record : flightIterator) {
-            String date = record.getDate();
-
-            if(isDateBetweenTwoDate(startDate, endDate, date)) {
-                flights.add(new Flight(record.getId(),
-                        record.getFlightName(),
-                        record.getDate(),
-                        record.getDepartureLocation(),
-                        record.getArrivalLocation(),
-                        record.getTotalSeatCapacity(),
-                        record.getTicketBasePrice(),
-                        record.getReservationClosed()));
-            }
-        }
-
+        flightIterator.forEach(flightRecord -> { filter(flights, flightRecord); });
+        //        for (FlightRecord flightRecord : flightIterator) {
+        //            String date = flightRecord.getDate();
+        //            if(isDateBetweenTwoDate(startDate, endDate, date)) {
+        //                flights.add(new Flight(flightRecord.getId(),
+        //                        flightRecord.getFlightName(),
+        //                        flightRecord.getDate(),
+        //                        flightRecord.getDepartureLocation(),
+        //                        flightRecord.getArrivalLocation(),
+        //                        flightRecord.getTotalSeatCapacity(),
+        //                        flightRecord.getTicketBasePrice(),
+        //                        flightRecord.getReservationClosed()));
+        //            }
+        //        }
         return flights;
+    }
+
+    private void filter(List<Flight> flights, FlightRecord flightRecord) {
+        String date = flightRecord.getDate();
+        if(isDateBetweenTwoDate(startDate, endDate, date)) {
+            flights.add(new Flight(flightRecord.getId(),
+                    flightRecord.getFlightName(),
+                    flightRecord.getDate(),
+                    flightRecord.getDepartureLocation(),
+                    flightRecord.getArrivalLocation(),
+                    flightRecord.getTotalSeatCapacity(),
+                    flightRecord.getTicketBasePrice(),
+                    flightRecord.getReservationClosed()));
+        }
     }
 
     public boolean isDateBetweenTwoDate(String startDate, String endDate, String currentDate) {

@@ -15,6 +15,9 @@ public class PurchasedTicketCreateRequest {
     @JsonProperty("numberOfSeatsReserved")
     private Integer numberOfSeatsReserved;
 
+    // Customer name
+    // credit card number as a String
+
     public String getTicketId() {
         return ticketId;
     }

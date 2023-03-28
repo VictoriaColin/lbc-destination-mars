@@ -59,6 +59,7 @@ public class FlightService {
             return null;
         }
     }
+
     public Flight findByFlightId(String flightId) {
         Flight cachedFlight = cache.get(flightId);
         // Check if flight is cached and return it if true

@@ -27,6 +27,11 @@ public class PurchasedTicketController {
     @PostMapping
     public ResponseEntity<PurchasedTicketResponse> purchaseTicket(
             @RequestBody PurchasedTicketCreateRequest purchasedTicketCreateRequest) {
+
+        // Validate Credit Card
+        // boolean cardValid = creditCardService.validate(purchasedTicketCreateRequest.getCreateCard());
+        // if (!cardValid) return ResponseEntity.ok(failedPurchasedTicketResponse);
+
         PurchasedTicket purchasedTicket = purchasedTicketService.purchaseTicket(purchasedTicketCreateRequest.getTicketId(),
                 purchasedTicketCreateRequest.getNumberOfSeatsReserved());
         

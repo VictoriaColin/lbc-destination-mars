@@ -14,6 +14,6 @@ public class CacheConfig {
 
     @Bean
     public CacheStore myCache() {
-        return new CacheStore(120, TimeUnit.SECONDS);
+        return new CacheStore(6, TimeUnit.HOURS);
     }
 }
