@@ -22,11 +22,13 @@ public class AsynchronousService {
     @Autowired
     private ApplicationContext applicationContext;
 
+    // running an asynchronous task to CloseReservationTask
     public void executeAsynchronously() {
         //System.out.println("***start***");
         ReservedTicketService reservedTicketService = applicationContext.getBean(ReservedTicketService.class);
         ConcurrentLinkedQueue<ReservedTicket> queue = applicationContext.getBean(ConcurrentLinkedQueue.class);
-        executorService.execute(new CloseReservationTask(durationToPay, reservedTicketService, queue));
+        CloseReservationTask task = new CloseReservationTask(durationToPay, reservedTicketService, queue);
+        executorService.execute(task);
         //System.out.println("****end***");
     }
 }

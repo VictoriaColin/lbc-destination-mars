@@ -3,7 +3,7 @@ package com.kenzie.appserver.service.model;
 
 public class Flight {
 
-    private final String id;
+    private final String flightId;
     private final String flightName;
     private final String date;
     private final String departureLocation;
@@ -12,7 +12,7 @@ public class Flight {
     private final Double ticketBasePrice;
     private final Boolean reservationClosed;
 
-    public Flight(String id,
+    public Flight(String flightId,
                   String flightName,
                   String date,
                   String departureLocation,
@@ -20,7 +20,7 @@ public class Flight {
                   Integer totalSeatCapacity,
                   Double ticketBasePrice,
                   Boolean reservationClosed) {
-        this.id = id;
+        this.flightId = flightId;
         this.flightName = flightName;
         this.date = date;
         this.departureLocation = departureLocation;
@@ -30,8 +30,8 @@ public class Flight {
         this.reservationClosed = reservationClosed;
     }
 
-    public String getId() {
-        return id;
+    public String getFlightId() {
+        return flightId;
     }
 
     public String getFlightName() {

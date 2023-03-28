@@ -7,14 +7,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Scheduler {
+    // if we have repeated task a scheduler
+    // every 200 ms it would wake up
+    // and close any reservations not reserved
 
     // Create any asynchronous services
 
     @Autowired
     private AsynchronousService checkAsyncService;
 
-    @Scheduled(fixedDelay = 200)
+    @Scheduled(fixedDelay = 2000)
     public void schedule() {
+        // this piece of work is scheduled every 200 ms.
         checkAsyncService.executeAsynchronously();
     }
 

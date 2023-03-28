@@ -9,8 +9,8 @@ import javax.validation.constraints.NotEmpty;
 
 public class FlightUpdateRequest {
     @NotEmpty
-    @JsonProperty("id")
-    private String id;
+    @JsonProperty("flightId")
+    private String flightId;
 
     @NotEmpty
     @JsonProperty("flightName")
@@ -40,10 +40,13 @@ public class FlightUpdateRequest {
     private Boolean reservationClosed;
 
 
-    public String getId() {
-        return id;
+    public String getFlightId() {
+        return flightId;
     }
 
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
+    }
 
     public String getFlightName() {
         return flightName;
@@ -79,9 +82,7 @@ public class FlightUpdateRequest {
         return reservationClosed;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
 
     public void setFlightName(String flightName) {
         this.flightName = flightName;
