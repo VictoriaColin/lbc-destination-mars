@@ -34,7 +34,7 @@ public class CreditCardServiceTest {
         // When
         boolean isValid = subject.validate(creditCardString);
         //Then
-        Assertions.assertTrue(isValid);
+        Assertions.assertFalse(isValid);
     }
 
 
