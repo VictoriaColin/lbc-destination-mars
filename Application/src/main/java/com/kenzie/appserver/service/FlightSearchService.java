@@ -11,12 +11,10 @@ import java.util.*;
 
 @Service
 public class FlightSearchService {
-
     @Autowired
     FlightRepository flightRepository;
     String startDate = "2014-05-01";
     String endDate = "2014-05-10";
-
 
     public List<Flight> searchFlights(LocalDate date, String departureLocation, String arrivalLocation) {
         //        List<Flight> flights = new ArrayList<>();
@@ -69,7 +67,6 @@ public class FlightSearchService {
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
         LocalDate current = LocalDate.parse(currentDate);// date in question
-
         return current.compareTo(start) >= 0 && current.compareTo(end) <= 0;
     }
 }

@@ -99,7 +99,7 @@ public class FlightSearchController {
     public ResponseEntity<FlightResponse> updateFlight(@RequestBody FlightUpdateRequest flightUpdateRequest) {
         Flight flight = new Flight(flightUpdateRequest.getFlightId(),
                 flightUpdateRequest.getFlightName(),
-                flightUpdateRequest.getDate(),
+                flightUpdateRequest.getDate().toString(),
                 flightUpdateRequest.getDepartureLocation(),
                 flightUpdateRequest.getArrivalLocation(),
                 flightUpdateRequest.getTotalSeatCapacity(),

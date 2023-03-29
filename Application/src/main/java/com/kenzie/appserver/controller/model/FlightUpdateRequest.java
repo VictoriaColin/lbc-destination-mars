@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 
 public class FlightUpdateRequest {
     @NotEmpty
@@ -18,7 +19,7 @@ public class FlightUpdateRequest {
 
     @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("date")
-    private String date;
+    private LocalDate date;
 
     @NotEmpty
     @JsonProperty("departureLocation")
@@ -53,7 +54,7 @@ public class FlightUpdateRequest {
     }
 
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -88,7 +89,7 @@ public class FlightUpdateRequest {
         this.flightName = flightName;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
