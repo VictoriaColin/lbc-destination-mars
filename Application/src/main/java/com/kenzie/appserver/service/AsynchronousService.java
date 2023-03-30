@@ -27,8 +27,9 @@ public class AsynchronousService {
         //System.out.println("***start***");
         ReservedTicketService reservedTicketService = applicationContext.getBean(ReservedTicketService.class);
         ConcurrentLinkedQueue<ReservedTicket> queue = applicationContext.getBean(ConcurrentLinkedQueue.class);
-        CloseReservationTask task = new CloseReservationTask(durationToPay, reservedTicketService, queue);
-        executorService.execute(task);
+//        CloseReservationTask task = new CloseReservationTask(durationToPay, reservedTicketService, queue);
+//        executorService.execute(task);
+        executorService.execute(new CloseReservationTask(durationToPay, reservedTicketService, queue));
         //System.out.println("****end***");
     }
 }

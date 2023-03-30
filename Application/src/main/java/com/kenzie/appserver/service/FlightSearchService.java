@@ -13,8 +13,6 @@ import java.util.*;
 public class FlightSearchService {
     @Autowired
     FlightRepository flightRepository;
-    String startDate = "2014-05-01";
-    String endDate = "2014-05-10";
 
     public List<Flight> searchFlights(LocalDate date, String departureLocation, String arrivalLocation) {
         //        List<Flight> flights = new ArrayList<>();
@@ -47,26 +45,5 @@ public class FlightSearchService {
         return flights;
     }
 
-    private void filter(List<Flight> flights, FlightRecord flightRecord) {
-        String date = flightRecord.getDate();
-        if(isDateBetweenTwoDate(startDate, endDate, date)) {
-            flights.add(new Flight(flightRecord.getId(),
-                    flightRecord.getFlightName(),
-                    flightRecord.getDate(),
-                    flightRecord.getDepartureLocation(),
-                    flightRecord.getArrivalLocation(),
-                    flightRecord.getTotalSeatCapacity(),
-                    flightRecord.getTicketBasePrice(),
-                    flightRecord.getReservationClosed()));
-        }
-    }
 
-    public boolean isDateBetweenTwoDate(String startDate, String endDate, String currentDate) {
-        //String startDate = "2014-05-01";
-        //String endDate = "2014-05-10";
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
-        LocalDate current = LocalDate.parse(currentDate);// date in question
-        return current.compareTo(start) >= 0 && current.compareTo(end) <= 0;
-    }
 }
