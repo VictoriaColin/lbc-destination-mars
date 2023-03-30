@@ -114,10 +114,10 @@ public class ReservedTicketControllerTest {
         mapper.registerModule(new JavaTimeModule());
         //WHEN
         mvc.perform(post("/reservedtickets")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(reservedTicketCreateRequest)))
-        //THEN
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(reservedTicketCreateRequest)))
+                //THEN
                 .andExpect(status().isBadRequest());
     }
 
@@ -144,8 +144,20 @@ public class ReservedTicketControllerTest {
                 reservationClosed);
         Flight persistedFlight = flightService.addNewFlight(flight);
 
-        ReservedTicket reservedTicket = new ReservedTicket(persistedFlight.getFlightId(), persistedFlight.getFlightName(), randomUUID().toString(), persistedFlight.getDepartureLocation(), persistedFlight.getArrivalLocation(), LocalDateTime.now().toString(), persistedFlight.getTotalSeatCapacity());
-        ReservedTicket secondReservedTicket = new ReservedTicket(persistedFlight.getFlightId(), persistedFlight.getFlightName(), randomUUID().toString(), persistedFlight.getDepartureLocation(), persistedFlight.getArrivalLocation(), LocalDateTime.now().toString(), persistedFlight.getTotalSeatCapacity());
+        ReservedTicket reservedTicket = new ReservedTicket(persistedFlight.getFlightId(),
+                persistedFlight.getFlightName(),
+                randomUUID().toString(),
+                persistedFlight.getDepartureLocation(),
+                persistedFlight.getArrivalLocation(),
+                LocalDateTime.now().toString(),
+                persistedFlight.getTotalSeatCapacity());
+        ReservedTicket secondReservedTicket = new ReservedTicket(persistedFlight.getFlightId(),
+                persistedFlight.getFlightName(),
+                randomUUID().toString(),
+                persistedFlight.getDepartureLocation(),
+                persistedFlight.getArrivalLocation(),
+                LocalDateTime.now().toString(),
+                persistedFlight.getTotalSeatCapacity());
 
         reservedTicketService.reservedTicket(reservedTicket);
         reservedTicketService.reservedTicket(secondReservedTicket);
@@ -153,7 +165,8 @@ public class ReservedTicketControllerTest {
         mapper.registerModule(new JavaTimeModule());
 
         //WHEN
-        ResultActions actions = mvc.perform(get("/reservedtickets/flight/{flightId}", persistedFlight.getFlightId())
+        ResultActions actions = mvc.perform(get("/reservedtickets/flight/{flightId}",
+                        persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -161,8 +174,9 @@ public class ReservedTicketControllerTest {
         //THEN
         String responseBody = actions.andReturn().getResponse().getContentAsString();
 
-        List<ReservedTicketResponse> reservedTicketResponseList = mapper.readValue(responseBody, new TypeReference<List<ReservedTicketResponse>>() {
-        });
+        List<ReservedTicketResponse> reservedTicketResponseList = mapper
+                .readValue(responseBody, new TypeReference<List<ReservedTicketResponse>>() {
+                });
         assertThat(reservedTicketResponseList.size()).isEqualTo(2);
     }
 
@@ -191,12 +205,11 @@ public class ReservedTicketControllerTest {
         mapper.registerModule(new JavaTimeModule());
 
         //WHEN
-        ResultActions actions = mvc.perform(get("/reservedtickets/flight/{flightId}", persistedFlight.getFlightId())
+        ResultActions actions = mvc.perform(get("/reservedtickets/flight/{flightId}",
+                        persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 //THEN
                 .andExpect(status().isNoContent());
     }
-
-
 }
