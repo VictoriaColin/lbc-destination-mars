@@ -106,6 +106,7 @@ public class FlightService {
             FlightRecord flightRecord = new FlightRecord();
             flightRecord.setId(flight.getFlightId());
             flightRecord.setDate(flight.getDate());
+            flightRecord.setFlightName(flight.getFlightName());
             flightRecord.setId(flight.getFlightId());
             flightRecord.setDepartureLocation(flight.getDepartureLocation());
             flightRecord.setArrivalLocation(flight.getArrivalLocation());
