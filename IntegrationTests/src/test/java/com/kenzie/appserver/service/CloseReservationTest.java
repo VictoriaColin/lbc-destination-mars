@@ -1,8 +1,6 @@
-package com.kenzie.appserver.controller;
+package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.IntegrationTest;
-import com.kenzie.appserver.service.FlightService;
-import com.kenzie.appserver.service.ReservedTicketService;
 import com.kenzie.appserver.service.model.Flight;
 import com.kenzie.appserver.service.model.ReservedTicket;
 import net.andreinc.mockneat.MockNeat;
@@ -13,11 +11,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @IntegrationTest
-public class TEMPCloseReservationTest {
+public class CloseReservationTest {
 
     @Autowired
     FlightService flightService;
