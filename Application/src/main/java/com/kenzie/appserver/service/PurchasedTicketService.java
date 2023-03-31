@@ -87,4 +87,11 @@ public class PurchasedTicketService {
 
         return  purchasedTickets;
     }
+
+   public void setFlightService(FlightService flightService){
+        this.flightService = flightService;
+    }
+
+
+
 }
