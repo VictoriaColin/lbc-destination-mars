@@ -91,4 +91,11 @@ public class PurchasedTicketService {
     }
 
 
+   public void setFlightService(FlightService flightService){
+        this.flightService = flightService;
+    }
+
+
+
+
 }

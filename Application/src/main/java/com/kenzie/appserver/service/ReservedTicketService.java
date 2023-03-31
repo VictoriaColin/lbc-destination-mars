@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -72,8 +73,15 @@ public class ReservedTicketService {
 
         ReservedTicketRecord reservedTicketRecord = new ReservedTicketRecord();
         reservedTicketRecord.setFlightId(reservedTicket.getFlightId());
+        reservedTicketRecord.setFlightName(reservedTicket.getFlightName());
         reservedTicketRecord.setTicketId(reservedTicket.getTicketId());
+        reservedTicketRecord.setDepartureLocation(reservedTicket.getDepartureLocation());
+        reservedTicketRecord.setArrivalLocation(reservedTicket.getArrivalLocation());
         reservedTicketRecord.setDateOfReservation(reservedTicket.getDateOfReservation());
+//        reservedTicketRecord.setReservationClosed(true);
+//        reservedTicketRecord.setDateOfReservationClosed(LocalDate.now().toString());
+        reservedTicketRecord.setNumberOfSeatsReserved(reservedTicket.getNumberOfSeatsReserved());
+//        reservedTicketRecord.setPurchasedTicket(reservedTicket.getPurchasedTicket());
 
         reservedTicketRepository.save(reservedTicketRecord);
         reservedTicketsQueue.add(reservedTicket);

@@ -72,17 +72,32 @@ public class CloseReservationTask implements Runnable{
         boolean isTicketNotPurchased = reserveTicketId.getPurchasedTicket() == null || !reserveTicketId.getPurchasedTicket();
         if (isTicketNotPurchased && diff > durationToPay) {
             //System.out.println("if...");
-            ReservedTicket reserveTicketRecord = new ReservedTicket(reserveTicketId.getFlightName(),
+
+
+//            ReservedTicket reserveTicketRecord = new ReservedTicket(reserveTicketId.getFlightName(),
+//                    ticketId,
+//                    reserveTicketId.getDepartureLocation(),
+//                    reserveTicketId.getDateOfReservation(),
+//                    reserveTicketId.getArrivalLocation(),
+//                    reserveTicketId.getDateOfReservation(),
+//                    true,
+//                    reservedTicket.getDateOfReservationClosed(),
+//                    reserveTicketId.getNumberOfSeatsReserved(),
+//                    false);
+
+            ReservedTicket reserveTicketRecord = new ReservedTicket(reserveTicketId.getFlightId(),
+                    reserveTicketId.getFlightName(),
                     ticketId,
                     reserveTicketId.getDepartureLocation(),
-                    reserveTicketId.getDateOfReservation(),
                     reserveTicketId.getArrivalLocation(),
                     reserveTicketId.getDateOfReservation(),
-                    true, String.valueOf(LocalDateTime.now()),
-                    10, false);
-            System.out.println("reserveTicketRecord - getReservationClosed() " +reserveTicketRecord.getReservationClosed() +" getDateReservationClosed() " +reserveTicketRecord.getDateOfReservationClosed());
-            ReservedTicket persistedReservedTicket = reservedTicketService.updateReserveTicket(reserveTicketRecord);
-            System.out.println("persistedReservedTicket - getReservationClosed() " + persistedReservedTicket.getReservationClosed() +" getDateReservationClosed() " +persistedReservedTicket.getDateOfReservationClosed());
+                    true,
+                    LocalDateTime.now().toString(),
+                    reserveTicketId.getNumberOfSeatsReserved(),
+                    false);
+            //System.out.println("reserveTicketRecord - getReservationClosed() " +reserveTicketRecord.getReservationClosed() +" getDateReservationClosed() " +reserveTicketRecord.getDateReservationClosed());
+            reservedTicketService.updateReserveTicket(reserveTicketRecord);
+            //System.out.println("persistedReservedTicket - getReservationClosed() " +persistedReservedTicket.getReservationClosed() +" getDateReservationClosed() " +persistedReservedTicket.getDateReservationClosed());
             // Step 6.2: FALSE - If the ticket has been purchased || is less than the duration
             // add back to the reservedTicketQueue
         } else if (reserveTicketId.getPurchasedTicket() || diff <= durationToPay) {
