@@ -3,6 +3,7 @@ package com.kenzie.appserver.service;
 import com.kenzie.appserver.repositories.PurchasedTicketRepository;
 import com.kenzie.appserver.repositories.model.PurchasedTicketRecord;
 import com.kenzie.appserver.service.model.Flight;
+import com.kenzie.appserver.service.FlightService;
 import com.kenzie.appserver.service.model.PurchasedTicket;
 import com.kenzie.appserver.service.model.ReservedTicket;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class PurchasedTicketService {
         this.purchasedTicketRepository = purchasedTicketRepository;
         this.reservedTicketService = reservedTicketService;
     }
+
     
     public PurchasedTicket purchaseTicket(String reservedTicketId, Integer numberOfSeatsReserved) {
 
@@ -88,9 +90,11 @@ public class PurchasedTicketService {
         return  purchasedTickets;
     }
 
+
    public void setFlightService(FlightService flightService){
         this.flightService = flightService;
     }
+
 
 
 

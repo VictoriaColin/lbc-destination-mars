@@ -16,7 +16,7 @@ public class Scheduler {
     @Autowired
     private AsynchronousService checkAsyncService;
 
-    @Scheduled(fixedDelay = 2000)
+    @Scheduled(fixedDelay = 200)
     public void schedule() {
         // this piece of work is scheduled every 200 ms.
         checkAsyncService.executeAsynchronously();

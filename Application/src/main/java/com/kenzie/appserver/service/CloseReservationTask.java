@@ -40,7 +40,7 @@ public class CloseReservationTask implements Runnable{
             return;
         }
         String ticketId = reservedTicket.getTicketId();
-        //System.out.println(ticketId);
+        System.out.println(ticketId);
         // step 2: by id get the reservedTicket record from repo
         ReservedTicket reserveTicketId = null;
         try {
@@ -69,16 +69,6 @@ public class CloseReservationTask implements Runnable{
         //System.out.println("getTicketPurchased()? " + reserveTicketId.getTicketPurchased() +" diff " +diff +" durationToPay " +durationToPay);
 
 
-        //                          String flightId,
-        //                          String flightName,
-        //                          String ticketId,
-        //                          String departureLocation,
-        //                          String arrivalLocation,
-        //                          String dateOfReservation,
-        //                          Boolean reservationClosed,
-        //                          String dateOfReservationClosed,
-        //                          Integer numberOfSeatsReserved,
-        //                          Boolean purchasedTicket
         boolean isTicketNotPurchased = reserveTicketId.getPurchasedTicket() == null || !reserveTicketId.getPurchasedTicket();
         if (isTicketNotPurchased && diff > durationToPay) {
             //System.out.println("if...");
