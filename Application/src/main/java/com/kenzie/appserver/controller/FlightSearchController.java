@@ -111,8 +111,8 @@ public class FlightSearchController {
     @DeleteMapping("/{flightId}")
     public ResponseEntity deleteFlightById(@PathVariable("flightId") String flightId) {
         flightService.deleteFlight(flightId);
-        //return ResponseEntity.noContent().build();
-        return ResponseEntity.status((204)).build();
+        return ResponseEntity.noContent().build();
+        //return ResponseEntity.status((204)).build();
     }
 
     // Helper method
