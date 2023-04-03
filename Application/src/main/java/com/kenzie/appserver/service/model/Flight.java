@@ -1,6 +1,5 @@
 package com.kenzie.appserver.service.model;
 
-
 import java.time.LocalDate;
 
 public class Flight {
