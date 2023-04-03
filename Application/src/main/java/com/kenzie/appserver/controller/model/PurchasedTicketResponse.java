@@ -24,8 +24,6 @@ public class PurchasedTicketResponse {
     // credit card validation failed or successful
     //private boolean cardValid;
 
-
-
     public String getFlightName() {
         return flightName;
     }
