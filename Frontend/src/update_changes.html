@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Flight | Destination: MARS</title>
+    <link rel="stylesheet" href="./css/update_style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-box">
+        <div class="logo" style="display: flex">
+            <h1>
+                <a href="search.html"> <img src="images/spacehship2.png" alt="logo"> </a>
+                <!--Name of website next to logo-->
+                <span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+                <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
+            </h1>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="buttons">
+        <a href="update_conf.html">
+            <button class="return">Confirm Updates</button>
+        </a>
+
+        <a href="customer_dashboard.html">
+            <button class="return">Return to Dashboard</button>
+        </a>
+    </div>
+
+    <div class="upgrades">
+        <div class="info">
+            <h4>Would you like to upgrade?</h4>
+            <p>**Max 2 bags per traveler.</p>
+        </div>
+
+        <div class="suit_options">
+            <p>Please select a suit.</p>
+            <select required name="suit" id="suit_options">
+                <option value="economy">Economy suit</option>
+                <option value="deluxe">Deluxe suit</option>
+                <option value="premium">Premium suit</option>
+            </select>
+        </div>
+
+        <div class="baggage_options">
+            <p>How many baggage items?</p>
+            <select required name="baggage" id="baggage_options" class="baggage_options">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+
+        <div class="food_options">
+            <p>Please select a food package.</p>
+            <select required name="food" id="food_options" class="food_options">
+                <option value="tier 1">Gold</option>
+                <option value="tier 2">Diamond</option>
+                <option value="tier 3">Platinum</option>
+            </select>
+        </div>
+
+        <ul class="suits">
+            <li>All suits come with an oxygen tank and heat retention gear.</li>
+            <li>Deluxe suits come with an additional life support system.</li>
+            <li>Premium suits include additional life support and temperature regulatory systems.</li>
+        </ul>
+
+        <ul class="foods">
+            <li>Gold includes nutrient paste, nuts, coffee, and fruit punch.</li>
+            <li>Diamond includes the above. chicken, beef, and brownies.</li>
+            <li>Platinum includes the above, fruits, candy, and freeze-dried ice cream.</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
