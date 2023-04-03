@@ -1,0 +1,181 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2 {
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style: none;
+}
+
+/*header begin*/
+
+img{
+    height: 100px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.logo{
+    display: flex;
+    text-align: center;
+    margin: 0%;
+}
+
+.header-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+header{
+    height: 10vh;
+    line-height: 10vh;
+    padding: 0 20px;
+}
+
+/*header end*/
+
+/*Checkout begin*/
+
+.checkout_container{
+    height: 1000px;
+    width: 1400px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -700px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: #990000;
+
+}
+
+.checkout_container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: .5fr 1.5fr 1fr .5fr;
+    grid-row-gap: 16px;
+}
+
+.flight_info{
+    grid-area: 1 / 1;
+    text-align: left;
+}
+
+.passenger_seats{
+    border-top: double #990000;
+    grid-area: 2 / 1;
+    text-align: left;
+}
+
+.upgrades{
+    border-top: double #990000;
+    grid-area: 3 / 1;
+    text-align: left;
+}
+
+.button_placement{
+    border-top: double #990000;
+    grid-area: 4 / 1;
+    text-align: left;
+}
+/*upgrades start*/
+.upgrades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+
+    .upgrades select {
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .info{
+        grid-area: 1 / 2;
+        text-align: center;
+    }
+    .suit_options{
+        grid-area: 2 / 1;
+        text-align: center;
+    }
+
+    .baggage_options{
+        grid-area: 2 / 2;
+        text-align: center;
+    }
+
+    .food_options{
+        grid-area: 2 / 3;
+        text-align: center;
+    }
+
+    .suits{
+        grid-area: 3 / 1;
+        text-align: left;
+    }
+
+    .foods{
+        grid-area: 3 / 3;
+        text-align: left;
+    }
+/*upgrades end*/
+
+/*seats start*/
+
+.passenger_seats{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: .1fr 1fr;
+}
+
+.instructions{
+    grid-area: 1 / 1 / 2 / 3;
+    text-align: center;
+}
+
+.seats_column1{
+    grid-area: 2 / 1;
+    text-align: center;
+}
+
+.seats_column2{
+    grid-area: 2 / 2;
+    text-align: center;
+}
+
+/*seats end*/
+
+button{
+    height: 25px;
+    width: 200px;
+    border-radius: 10px;
+    border-color: #990000;
+    background-color: transparent;
+}
+
+.total{
+    font-size: x-large;
+    font-weight: 500;
+}

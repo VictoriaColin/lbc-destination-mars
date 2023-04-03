@@ -1,0 +1,89 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style: none;
+}
+
+/*header begin*/
+
+img{
+    height: 100px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.logo{
+    display: flex;
+    text-align: center;
+    margin: 0%;
+}
+
+.header-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+header{
+    height: 10vh;
+    line-height: 10vh;
+    padding: 0 20px;
+}
+
+/*header end*/
+
+/*Flights*/
+
+.flights_container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    height: auto;
+    width: 1500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -750px;
+    padding: 20px;
+    background-color: transparent;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: #990000;
+}
+
+.results{
+    grid-area: 2 / 1;
+    text-align: left;
+}
+
+.reserve_button{
+    grid-area: 3 / 1;
+    text-align: right;
+}
+
+button{
+    height: 25px;
+    width: 200px;
+    border-radius: 10px;
+    border-color: #990000;
+    background-color: transparent;
+}
