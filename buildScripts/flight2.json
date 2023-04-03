@@ -1,0 +1,11 @@
+{
+  "Id": {"S": "2222"},
+  "FlightName": {"S": " NAS2222"},
+  "TicketBasePrice": {"N": "100000"},
+  "TotalSeatCapacity": {"N": "10"},
+  "ReservationClosed": {"BOOL": false},
+  "DepartureLocation": {"S": "FL"},
+  "ArrivalLocation": {"S": "MARS"},
+  "Date": {"S": "2023-04-15"}
+}
+

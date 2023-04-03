@@ -1,0 +1,245 @@
+{
+  "Flight": [
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "1001"
+          },
+          "FlightName": {
+            "S": "SPX1001"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-15"
+          }
+
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "1002"
+          },
+          "FlightName": {
+            "S": "SPX1002"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "CA"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-15"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "1001"
+          },
+          "FlightName": {
+            "S": "NASA1001"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-15"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "1001"
+          },
+          "FlightName": {
+            "S": "SPX1001"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-21"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "1002"
+          },
+          "FlightName": {
+            "S": "BOE1002"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-21"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "2001"
+          },
+          "FlightName": {
+            "S": "NASA2001"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-21"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "1002"
+          },
+          "FlightName": {
+            "S": "SPX1002"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-28"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Id": {
+            "S": "2001"
+          },
+          "FlightName": {
+            "S": "NASA2001"
+          },
+          "TicketBasePrice": {
+            "N": "100000"
+          },
+          "TotalSeatCapacity": {
+            "N": "10"
+          },
+          "ReservationClosed": {
+            "BOOL": false
+          },
+          "DepartureLocation": {
+            "S": "FL"
+          },
+          "ArrivalLocation": {
+            "S": "MARS"
+          },
+          "Date": {
+            "S": "2023-04-28"
+          }
+        }
+      }
+    }
+  ]
+}

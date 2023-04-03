@@ -2,14 +2,12 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.*;
 import com.kenzie.appserver.service.SeatAvailabilityService;
-import com.kenzie.appserver.service.model.Flight;
 import com.kenzie.appserver.service.model.Seat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +16,8 @@ import static java.util.UUID.randomUUID;
 @RestController
 @RequestMapping("/seat")
 public class SeatAvailabilityController {
-
     @Autowired
     private SeatAvailabilityService seatAvailabilityService;
-
     @GetMapping("/{flightId}")
     public ResponseEntity<List<SeatReservationResponse>> getAvailableSeats(@PathVariable String flightId) {
 
@@ -41,12 +37,9 @@ public class SeatAvailabilityController {
 
     @PostMapping
     public ResponseEntity<SeatReservationResponse> addNewSeat(@RequestBody AddSeatRequest request) {
-
         Seat seat = new Seat(randomUUID().toString(), request.getSeatNumber(), request.getTicketId(), false);
         seatAvailabilityService.addNewSeat(seat);
-
         SeatReservationResponse seatReservationResponse = createSeatResponse(seat);
-
         return ResponseEntity.created(URI.create("/seat/" + seatReservationResponse.getFlightId())).body(seatReservationResponse);
     }
 
