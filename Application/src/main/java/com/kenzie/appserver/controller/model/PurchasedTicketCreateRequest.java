@@ -16,7 +16,12 @@ public class PurchasedTicketCreateRequest {
     private Integer numberOfSeatsReserved;
 
     // Customer name
+    @JsonProperty("customerName")
+    private String customerName;
+
     // credit card number as a String
+    @JsonProperty("creditCard")
+    private String creditCard;
 
     public String getTicketId() {
         return ticketId;
@@ -32,5 +37,21 @@ public class PurchasedTicketCreateRequest {
 
     public void setNumberOfSeatsReserved(Integer numberOfSeatsReserved) {
         this.numberOfSeatsReserved = numberOfSeatsReserved;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
     }
 }
