@@ -24,6 +24,8 @@ public class PurchasedTicketResponse {
     // credit card validation failed or successful
     @JsonProperty("creditCardValid")
     private Boolean creditCardValid;
+
+
     //private boolean cardValid;
 
     public String getFlightName() {

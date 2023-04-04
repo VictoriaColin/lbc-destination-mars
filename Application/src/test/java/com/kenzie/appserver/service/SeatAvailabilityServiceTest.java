@@ -56,7 +56,7 @@ public class SeatAvailabilityServiceTest {
 
         // when
         when(seatRepository.findAll()).thenReturn(seatRecord);//getSeatsByFlightId(flightId)
-        List<Seat> seats = subject.getSeats(flightId);
+        List<Seat> seats = subject.getAllSeats(flightId);
 
         //then
         Assertions.assertNotNull(seats, "The Seat list is returned");
@@ -87,7 +87,7 @@ public class SeatAvailabilityServiceTest {
 
         // when
         when(seatRepository.findAll()).thenReturn(seatRecords);
-        List<Seat> seats = subject.getSeats(flightId);
+        List<Seat> seats = subject.getAllSeats(flightId);
 
         //then
         Assertions.assertNotNull(seats, "The Seat list is returned");
