@@ -12,7 +12,6 @@ public class FlightSeatingReservationApp{
     // response.
 
     // Ticket Agent App
-
     public int[][] populateAndPrintSeatingChart() {
         int[][] seatChart = new int[4][4];
         for (int row = 0; row < seatChart.length; row++) {
@@ -38,6 +37,7 @@ public class FlightSeatingReservationApp{
         List<Integer> reservedSeatList = new ArrayList<>();
         //System.out.println(reservedSeatList);
         List<Integer> userReservedSeatList = new ArrayList<>();
+        //System.out.println(userReservedSeatList);
 
         while (true) {
             System.out.println("Please enter a seat number: ");
@@ -71,7 +71,6 @@ public class FlightSeatingReservationApp{
 
             if (answer.equals("no")) {
                 System.out.println("Thanks for reserving your seat!");
-                userReservedSeatList.add(seatNumber);
                 break;
             }
         }
@@ -102,6 +101,12 @@ public class FlightSeatingReservationApp{
             System.out.println();
         }
     }
+//    public static void main(String[] args) {
+//        // create a 2D array
+//        FlightSeatingReservationApp object = new FlightSeatingReservationApp();
+//        object.seatReservationFunction();
+//    }
+
 }
 
 

@@ -26,8 +26,6 @@ public class PurchasedTicketResponse {
     private Boolean creditCardValid;
     //private boolean cardValid;
 
-
-
     public String getFlightName() {
         return flightName;
     }
