@@ -10,8 +10,21 @@ module.exports = {
 
   entry: {
     examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
-    concertAdmin: path.resolve(__dirname, 'src', 'pages', 'flightAdmin.js'),
-    ticketPurchase: path.resolve(__dirname, 'src', 'pages', 'ticketPurchase.js'),
+    cancelPage: path.resolve(__dirname, 'src', 'pages', 'cancelPage.js'),
+    cancel_confirmationPage: path.resolve(__dirname, 'src', 'pages', 'cancel_confirmationPage.js'),
+    checkoutPage: path.resolve(__dirname, 'src', 'pages', 'checkoutPage.js'),
+    create_accountPage: path.resolve(__dirname, 'src', 'pages', 'create_accountPage.js'),
+    customer_dashboardPage: path.resolve(__dirname, 'src', 'pages', 'customer_dashboardPage.js'),
+    customer_signinPage: path.resolve(__dirname, 'src', 'pages', 'customer_signinPage.js'),
+    flightsPage: path.resolve(__dirname, 'src', 'pages', 'flightsPage.js'),
+    indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
+    payment_confPage: path.resolve(__dirname, 'src', 'pages', 'payment_confPage.js'),
+    payscreenPage: path.resolve(__dirname, 'src', 'pages', 'payscreenPage.js'),
+    searchPage: path.resolve(__dirname, 'src', 'pages', 'searchPage.js'),
+    updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
+    update_changesPage: path.resolve(__dirname, 'src', 'pages', 'update_changesPage.js'),
+//    update_confPage: path.resolve(__dirname, 'src', 'pages', 'update_confPage.js'),
+
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -38,10 +51,86 @@ module.exports = {
         ]
   },
   plugins: [
-      new HtmlWebpackPlugin({
-        template: './src/admin.html',
-        filename: 'admin.html',
-        inject: false
-      }),
+
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+          template: './src/cancel.html',
+          filename: 'cancel.html',
+          inject: false
+        }),
+    new HtmlWebpackPlugin({
+          template: './src/cancel_confirmation.html',
+          filename: 'cancel_confirmation.html',
+          inject: false
+        }),
+    new HtmlWebpackPlugin({
+              template: './src/checkout.html',
+              filename: 'checkout.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/create_account.html',
+              filename: 'create_account.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/customer_dashboard.html',
+              filename: 'customer_dashboard.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/customer_signin.html',
+              filename: 'customer_signin.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/flights.html',
+              filename: 'flights.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/payment_conf.html',
+              filename: 'payment_conf.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+          template: './src/payscreen.html',
+          filename: 'payscreen.html',
+          inject: false
+        }),
+    new HtmlWebpackPlugin({
+              template: './src/search.html',
+              filename: 'search.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/update.html',
+              filename: 'update.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/update_changes.html',
+              filename: 'update_changes.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/update_conf.html',
+              filename: 'update_conf.html',
+              inject: false
+            }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve('src/css'),
+          to: path.resolve("dist/css")
+        }
+      ]
+    }),
+    new CleanWebpackPlugin()
+  ]
 
 }

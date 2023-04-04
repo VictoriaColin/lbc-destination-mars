@@ -2,6 +2,7 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.PurchasedTicketCreateRequest;
 import com.kenzie.appserver.controller.model.PurchasedTicketResponse;
+import com.kenzie.appserver.service.CreditCardService;
 import com.kenzie.appserver.service.PurchasedTicketService;
 import com.kenzie.appserver.service.ReservedTicketService;
 import com.kenzie.appserver.service.model.PurchasedTicket;
@@ -17,6 +18,7 @@ public class PurchasedTicketController {
     
     private PurchasedTicketService purchasedTicketService;
     private ReservedTicketService reservedTicketService;
+    private CreditCardService creditCardService;
 
     public PurchasedTicketController(PurchasedTicketService purchasedTicketService, 
                                      ReservedTicketService reservedTicketService) {
@@ -29,8 +31,8 @@ public class PurchasedTicketController {
             @RequestBody PurchasedTicketCreateRequest purchasedTicketCreateRequest) {
 
         // Validate Credit Card
-        // boolean cardValid = creditCardService.validate(purchasedTicketCreateRequest.getCreateCard());
-        // if (!cardValid) return ResponseEntity.ok(failedPurchasedTicketResponse);
+//         boolean cardValid = creditCardService.validate(purchasedTicketCreateRequest.getCreditCard());
+//         if (!cardValid) return ResponseEntity.ok(failedPurchasedTicketResponse);
 
         PurchasedTicket purchasedTicket = purchasedTicketService.purchaseTicket(purchasedTicketCreateRequest.getTicketId(),
                 purchasedTicketCreateRequest.getNumberOfSeatsReserved());
