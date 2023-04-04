@@ -7,8 +7,11 @@ module.exports = {
   optimization: {
     usedExports: true
   },
+
   entry: {
     examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
+    concertAdmin: path.resolve(__dirname, 'src', 'pages', 'flightAdmin.js'),
+    ticketPurchase: path.resolve(__dirname, 'src', 'pages', 'ticketPurchase.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -24,21 +27,21 @@ module.exports = {
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
     overlay: true
+    proxy: [
+          {
+            context: [
+              '/index',
+              '/admin'
+            ],
+            target: 'http://localhost:5001'
+          }
+        ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      inject: false
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve('src/css'),
-          to: path.resolve("dist/css")
-        }
-      ]
-    }),
-    new CleanWebpackPlugin()
-  ]
+      new HtmlWebpackPlugin({
+        template: './src/admin.html',
+        filename: 'admin.html',
+        inject: false
+      }),
+
 }
