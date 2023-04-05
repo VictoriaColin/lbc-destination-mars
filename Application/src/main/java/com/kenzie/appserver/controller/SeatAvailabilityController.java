@@ -3,6 +3,7 @@ package com.kenzie.appserver.controller;
 import com.kenzie.appserver.controller.model.*;
 import com.kenzie.appserver.service.SeatAvailabilityService;
 import com.kenzie.appserver.service.model.Flight;
+import com.kenzie.appserver.service.model.PurchasedTicket;
 import com.kenzie.appserver.service.model.Seat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,6 @@ public class SeatAvailabilityController {
         }
         return ResponseEntity.ok(response);
     }
-
 
     @PostMapping
     public ResponseEntity<AddSeatResponse> addNewSeat(@RequestBody AddSeatRequest request) {
