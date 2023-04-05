@@ -1,25 +1,18 @@
 package com.kenzie.appserver.repositories.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "User")
 public class UserRecord {
-
-    private String userId;
     private String userEmail;
     private String userPassword;
     private String logInAuthorizationCode;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
+    @DynamoDBHashKey(attributeName = "UserEmail")
     public String getUserEmail() {
         return userEmail;
     }
@@ -28,6 +21,7 @@ public class UserRecord {
         this.userEmail = userEmail;
     }
 
+    @DynamoDBAttribute(attributeName = "UserPassword")
     public String getUserPassword() {
         return userPassword;
     }
@@ -35,7 +29,7 @@ public class UserRecord {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
-
+    @DynamoDBAttribute(attributeName = "LogInAuthorizationCode")
     public String getLogInAuthorizationCode() {
         return logInAuthorizationCode;
     }
@@ -45,25 +39,15 @@ public class UserRecord {
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", logInAuthorizationCode=" + logInAuthorizationCode +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserRecord)) return false;
         UserRecord that = (UserRecord) o;
-        return logInAuthorizationCode == that.logInAuthorizationCode && userId.equals(that.userId) && userEmail.equals(that.userEmail) && userPassword.equals(that.userPassword);
+        return userEmail.equals(that.userEmail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userEmail, userPassword, logInAuthorizationCode);
+        return Objects.hash(userEmail);
     }
 }
