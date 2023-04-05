@@ -35,29 +35,30 @@
 
         <div class="card_name">
             Name on card
-            <input type="text" name="cust_name" placeholder="Name">
+            <input required id="cust_name" type="text" name="cust_name" placeholder="Name">
         </div>
 
 
         <div class="cc_num">
             Credit Card #
-            <input type="tel" name="card_number" size="18" minlength="19" maxlength="19" placeholder="5555 5555 5555 5555">
+            <input required id="cc" type="tel" name="card_number" size="18" minlength="19" maxlength="19"
+                   placeholder="5555 5555 5555 5555">
         </div>
 
 
         <div class="cc_exp">
             Exp
-            <input type="tel" name="exp_date" placeholder="MM / YY" minlength="5" maxlength="5">
+            <input required id="exp" type="tel" name="exp_date" placeholder="MM / YY" minlength="5" maxlength="5">
         </div>
 
 
         <div class="cc_cvv">
             CVV
-            <input type="tel" name="cvv" placeholder="123" minlength="3" maxlength="3">
+            <input required id="cvv" type="tel" name="cvv" placeholder="123" minlength="3" maxlength="3">
         </div>
 
 
-        <div class="button">
+        <div class="button" id="button">
             <a href="payment_conf.html">
                 <button>Pay Now</button>
             </a>

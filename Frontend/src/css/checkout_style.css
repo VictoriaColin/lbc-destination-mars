@@ -70,7 +70,7 @@ header{
 .checkout_container{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: .5fr 1.5fr 1fr .5fr;
+    grid-template-rows: .5fr .5fr 1fr .5fr;
     grid-row-gap: 16px;
 }
 
@@ -146,23 +146,28 @@ header{
 
 .passenger_seats{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: .1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 50px 60px;
 }
 
 .instructions{
-    grid-area: 1 / 1 / 2 / 3;
+    grid-area: 1 / 1 / 2 / 4;
     text-align: center;
 }
 
 .seats_column1{
     grid-area: 2 / 1;
-    text-align: center;
+    text-align: right;
 }
 
 .seats_column2{
     grid-area: 2 / 2;
     text-align: center;
+}
+
+.seats_column3{
+    grid-area: 2 / 3;
+    text-align: left;
 }
 
 /*seats end*/
