@@ -1,5 +1,6 @@
 package com.kenzie.appserver.service;
 
+import com.kenzie.appserver.service.model.CardValidationResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,12 @@ public class CreditCardServiceTest {
     public void isCardValid(){
         // Given
         String creditCardString = "79927398713";
+
         // When
-        boolean isValid = subject.validate(creditCardString);
+        CardValidationResult validate = subject.validate(creditCardString);
+        String cardNumberValidationResultCode = validate.getCardNumberValidationResultCode();
         //Then
-        Assertions.assertTrue(isValid);
+        Assertions.assertEquals("2000",cardNumberValidationResultCode);
     }
 
     @Test
@@ -32,12 +35,9 @@ public class CreditCardServiceTest {
         // Given
         String creditCardString = "79927389713";
         // When
-        boolean isValid = subject.validate(creditCardString);
+        CardValidationResult validate = subject.validate(creditCardString);
+        String cardNumberValidationResultCode = validate.getCardNumberValidationResultCode();
         //Then
-        Assertions.assertFalse(isValid);
+        Assertions.assertEquals("4000",cardNumberValidationResultCode);
     }
-
-
-
-
 }

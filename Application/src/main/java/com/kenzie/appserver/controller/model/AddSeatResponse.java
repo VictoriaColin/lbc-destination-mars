@@ -1,10 +1,13 @@
 package com.kenzie.appserver.controller.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
 
-public class AddSeatRequest {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AddSeatResponse {
+
     @NotEmpty
     @JsonProperty("flightName")
     private String flightName;
@@ -16,10 +19,6 @@ public class AddSeatRequest {
     @NotEmpty
     @JsonProperty("seatNumber")
     private String seatNumber;
-
-    @NotEmpty
-    @JsonProperty("seatReservationClosed")
-    private Boolean seatReservationClosed;
 
     @NotEmpty
     @JsonProperty("ticketId")
@@ -47,14 +46,6 @@ public class AddSeatRequest {
 
     public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
-    }
-
-    public Boolean getSeatReservationClosed() {
-        return seatReservationClosed;
-    }
-
-    public void setSeatReservationClosed(Boolean seatReservationClosed) {
-        this.seatReservationClosed = seatReservationClosed;
     }
 
     public String getTicketId() {

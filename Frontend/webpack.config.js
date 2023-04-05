@@ -7,6 +7,7 @@ module.exports = {
   optimization: {
     usedExports: true
   },
+
   entry: {
     examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
     cancelPage: path.resolve(__dirname, 'src', 'pages', 'cancelPage.js'),
@@ -23,6 +24,7 @@ module.exports = {
     updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
     update_changesPage: path.resolve(__dirname, 'src', 'pages', 'update_changesPage.js'),
 //    update_confPage: path.resolve(__dirname, 'src', 'pages', 'update_confPage.js'),
+
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -40,6 +42,7 @@ module.exports = {
     overlay: true
   },
   plugins: [
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
@@ -120,4 +123,5 @@ module.exports = {
     }),
     new CleanWebpackPlugin()
   ]
+
 }

@@ -2,6 +2,8 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.*;
 import com.kenzie.appserver.service.SeatAvailabilityService;
+import com.kenzie.appserver.service.model.Flight;
+import com.kenzie.appserver.service.model.PurchasedTicket;
 import com.kenzie.appserver.service.model.Seat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
 
@@ -21,7 +24,7 @@ public class SeatAvailabilityController {
     @GetMapping("/{flightId}")
     public ResponseEntity<List<SeatReservationResponse>> getAvailableSeats(@PathVariable String flightId) {
 
-        List<Seat> seats = seatAvailabilityService.getSeats(flightId);
+        List<Seat> seats = seatAvailabilityService.getAllSeats(flightId);
         // If there are no available, then return a 204
         if (seats == null || seats.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -34,13 +37,15 @@ public class SeatAvailabilityController {
         return ResponseEntity.ok(response);
     }
 
-
     @PostMapping
-    public ResponseEntity<SeatReservationResponse> addNewSeat(@RequestBody AddSeatRequest request) {
-        Seat seat = new Seat(randomUUID().toString(), request.getSeatNumber(), request.getTicketId(), false);
+    public ResponseEntity<AddSeatResponse> addNewSeat(@RequestBody AddSeatRequest request) {
+        Seat seat = new Seat(randomUUID().toString(), request.getSeatNumber(), request.getTicketId(), request.getSeatReservationClosed());
         seatAvailabilityService.addNewSeat(seat);
-        SeatReservationResponse seatReservationResponse = createSeatResponse(seat);
-        return ResponseEntity.created(URI.create("/seat/" + seatReservationResponse.getFlightId())).body(seatReservationResponse);
+        AddSeatResponse seatResponse = new AddSeatResponse();
+        seatResponse.setFlightId(seat.getFlightId());
+        seatResponse.setSeatNumber(seat.getSeatNumber());
+        seatResponse.setTicketId(seat.getTicketId());
+        return ResponseEntity.created(URI.create("/seat/" + seatResponse.getFlightId())).body(seatResponse);
     }
 
     @PutMapping

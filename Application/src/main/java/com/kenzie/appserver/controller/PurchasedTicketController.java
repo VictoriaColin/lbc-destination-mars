@@ -32,7 +32,7 @@ public class PurchasedTicketController {
 
         // Validate Credit Card
 //         boolean cardValid = creditCardService.validate(purchasedTicketCreateRequest.getCreditCard());
-//         if (!cardValid) return ResponseEntity.ok(failedPurchasedTicketResponse);
+//         if (!cardValid) return ResponseEntity.ok("failedPurchasedTicketResponse");
 
         PurchasedTicket purchasedTicket = purchasedTicketService.purchaseTicket(purchasedTicketCreateRequest.getTicketId(),
                 purchasedTicketCreateRequest.getNumberOfSeatsReserved());

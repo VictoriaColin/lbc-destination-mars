@@ -29,7 +29,7 @@ public class SeatAvailabilityService {
         //System.out.println(seatsByFlightId);
         
         for(SeatRecord seatRecord: seatIterator ) {
-            if (seatRecord.getTicketId() == null
+            if (seatRecord.getTicketId()==null
                     && !seatRecord.getSeatReservationClosed()) {
                 seats.add(new Seat(seatRecord.getFlightId(),
                         seatRecord.getSeatNumber(),

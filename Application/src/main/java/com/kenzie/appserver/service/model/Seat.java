@@ -2,10 +2,11 @@ package com.kenzie.appserver.service.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName = "Seat")
+
 public class Seat {
 
     private final String flightId;
+
     private final String seatNumber;
 
     private Boolean seatReservationClosed;
