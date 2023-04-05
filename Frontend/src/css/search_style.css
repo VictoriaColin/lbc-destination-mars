@@ -107,16 +107,28 @@ select{
     justify-items: center;
 }
 
-.depart_year{
+input[type="date"]::-webkit-calendar-picker-indicator{
+    background-color: transparent;
+    color: transparent;
+    border: none;
     display: inline-block;
+    cursor: pointer;
     width: 190px;
     height: 50px;
+    position: absolute;
+    opacity: 0;
+}
+
+.depart_date{
     text-align: center;
     margin: 10px;
     border-radius: 10px;
     border-style: solid;
     outline: 0;
     align-items: center;
+    position: relative;
+    width: 190px;
+    height: 50px;
 }
 
 .button_area {

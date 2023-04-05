@@ -42,12 +42,11 @@
         <option value="jezero"> Jezero Crater </option>
         <option value="mawrth"> Marwth Vallis </option>
     </select>
-    <input type="text" id="depart_year" name="depart" placeholder="Depart year" class="depart_year" maxlength="4" required
-           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+    <input type="date" id="depart_date" name="depart" class="depart_date" required/>
     <!--<button type="submit" class="button"> Find Flights </button>-->
     <div class="button_area">
         <a href="flights.html" type="submit">
-            <input type="submit" class="button"/>
+            <input type="submit" class="button" id="button"/>
         </a>
     </div>
 </div>

@@ -19,6 +19,11 @@ a, p {
     background-color: transparent;
     color: white;
 }
+#astroPic {
+    background-image: url("./astronaut.jpg");
+    width:150px;
+    height:150px;
+}
 
 .container{
     width: 100%;
