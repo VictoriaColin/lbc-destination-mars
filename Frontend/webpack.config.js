@@ -24,6 +24,8 @@ module.exports = {
     updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
     update_changesPage: path.resolve(__dirname, 'src', 'pages', 'update_changesPage.js'),
     update_confPage: path.resolve(__dirname, 'src', 'pages', 'update_confPage.js'),
+    flightAdmin: path.resolve(__dirname, 'src', 'pages', 'flightAdmin.js'),
+    ticketPurchase: path.resolve(__dirname, 'src', 'pages', 'ticketPurchase.js')
 
   },
   output: {
@@ -39,7 +41,16 @@ module.exports = {
     disableHostCheck: true,
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
-    overlay: true
+    overlay: true,
+    proxy:[
+                  {
+                    context: [
+                      '/'
+                    ],
+                    target: 'http://localhost:5001/'
+                  }
+                ]
+
   },
   plugins: [
 
@@ -111,6 +122,16 @@ module.exports = {
     new HtmlWebpackPlugin({
               template: './src/update_conf.html',
               filename: 'update_conf.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/flightAdmin.html',
+              filename: 'flightAdmin.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
+              template: './src/index2.html',
+              filename: 'index2.html',
               inject: false
             }),
     new CopyPlugin({
