@@ -71,7 +71,7 @@ public class UserLogInService {
     /**
      Rules of Password validation:
      1. length of password should not be greater than 15
-     2. length of password should not be less than
+     2. length of password should not be less than 5
      3. password and email should not be same
      4. password should have least 2 upper case letters
      5. password should have least 3 lower case letters
