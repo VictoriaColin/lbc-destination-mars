@@ -10,9 +10,6 @@ public class UserLogInResponse {
     @JsonProperty("logInStatus")
     private String logInStatus;
 
-    @NotEmpty
-    @JsonProperty("logInAuthorizationNumber")
-    private String logInAuthorizationNumber; // card approval code
 
     public String getLogInStatus() {
         return logInStatus;
@@ -22,11 +19,5 @@ public class UserLogInResponse {
         this.logInStatus = logInStatus;
     }
 
-    public String getLogInAuthorizationNumber() {
-        return logInAuthorizationNumber;
-    }
 
-    public void setLogInAuthorizationNumber(String logInAuthorizationNumber) {
-        this.logInAuthorizationNumber = logInAuthorizationNumber;
-    }
 }

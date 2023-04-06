@@ -34,7 +34,6 @@ public class UserLogInController {
 
         UserLogInResponse response = new UserLogInResponse();
         response.setLogInStatus(logInValidationResult.getLogInAuthorizationCode());
-        response.setLogInAuthorizationNumber(UUID.randomUUID().toString());
 
         return ResponseEntity.ok(response);
     }
@@ -46,9 +45,9 @@ public class UserLogInController {
         userLogInService.addNewUserDetails(user);
 
         AddUserResponse response = new AddUserResponse();
-        response.setUserEmail(request.getUserEmail());
-        response.setUserPassword(response.getUserPassword());
-        response.setLogInAuthorizationCode(APPROVAL_CODE);
+        response.setUserId(UUID.randomUUID().toString());
+        response.setUserEmail(user.getUserEmail());
+        response.setUserPassword(user.getUserPassWord());
 
         return ResponseEntity.created(URI.create("/user/" + response.getUserId())).body(response);
 

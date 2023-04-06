@@ -19,9 +19,6 @@ public class AddUserResponse {
     @JsonProperty("userPassword")
     private String userPassword;
 
-    @NotEmpty
-    @JsonProperty("logInAuthorizationCode")
-    private String logInAuthorizationCode;
 
     public String getUserId() {
         return userId;
@@ -47,11 +44,4 @@ public class AddUserResponse {
         this.userPassword = userPassword;
     }
 
-    public String getLogInAuthorizationCode() {
-        return logInAuthorizationCode;
-    }
-
-    public void setLogInAuthorizationCode(String logInAuthorizationCode) {
-        this.logInAuthorizationCode = logInAuthorizationCode;
-    }
 }
