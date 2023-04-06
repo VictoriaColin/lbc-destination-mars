@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CardValidationResponse {
 
-    @NotEmpty
+
     @JsonProperty("transactionNumber")
     private String transactionNumber;
 
@@ -16,7 +16,7 @@ public class CardValidationResponse {
     @JsonProperty("cardAuthorizationNumber")
     private String cardAuthorizationNumber; // card approval code
 
-    @NotEmpty
+
     @JsonProperty("cardNumberValidationResultCode")
     private String cardNumberValidationResultCode;
 
