@@ -95,7 +95,4 @@ public class PurchasedTicketService {
         this.flightService = flightService;
     }
 
-
-
-
 }

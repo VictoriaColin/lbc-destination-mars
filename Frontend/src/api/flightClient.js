@@ -35,9 +35,17 @@ export default class FlightClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns an array of flight
      */
-    async getFlights(errorCallback) {
+    async getFlights(departureLocation, arrivalLocation, date, errorCallback) {
+    console.log(departureLocation, arrivalLocation, date)
         try {
-            const response = await this.client.post(`/flight/search`);
+            const response = await this.client.post(`/flight/search`,
+            {
+            "departureLocation": departureLocation ,
+            "arrivalLocation": arrivalLocation,
+            "date": date
+
+            }
+            );
             return response.data;
         } catch(error) {
             this.handleError("getFlights", error, errorCallback);
@@ -63,7 +71,6 @@ export default class FlightClient extends BaseClass {
         try {
             const response = await this.client.post(`flight`, {
                   flightName: flightName,
-                  //flightId: flightId,
                   departureLocation: departureLocation ,
                   arrivalLocation: arrivalLocation,
                   date: date
@@ -92,7 +99,7 @@ export default class FlightClient extends BaseClass {
 
     /**
      *
-     * @param concertId
+     * @param flightId
      * @param errorCallback
      * @returns {Promise<*>}
      */
@@ -106,7 +113,7 @@ export default class FlightClient extends BaseClass {
     }
 
     /**
-     * Create a new playlist.
+     * Create a new flightList.
      * @param name The name of the playlist to create.
      * @param customerId The user who is the owner of the playlist.
      * @param tags Metadata tags to associate with a playlist.
@@ -125,7 +132,7 @@ export default class FlightClient extends BaseClass {
     }
 
     /**
-     * Add a song to a playlist.
+     * Add a song to a flightList.
      * @param id The id of the playlist to add a song to.
      * @param asin The asin that uniquely identifies the album.
      * @param trackNumber The track number of the song on the album.

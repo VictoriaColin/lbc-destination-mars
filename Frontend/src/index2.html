@@ -27,11 +27,37 @@
     <h3>There are no flights!</h3>
     <p>Have tickets to sell?  Go to the <a href="flightAdmin.html">Manage flight</a> page and create a flight.</p>
 </div>
+<div class="card">
+    <h2>Choose a Flight</h2>
+
+    <form class="card-content" id="create-flight-detail-form">
+
+
+        <p class = "form-field">
+            <label>Flying From</label>
+            <input type="text" required class="validated-field" id="flying-from" placeholder="source" autofocus>
+        </p>
+
+        <p class = "form-field">
+            <label>flying To</label>
+            <input type="text" required class="validated-field" id="flying-to" placeholder="destination" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>date</label>
+            <input type="date" required id="date" class="date validated-field">
+        </p>
+
+        <button type="submit" id="find-flight">Submit</button>
+    </form>
+</div>
 <div class="card state" id="choose-flight">
     <h2 id="flightlist-name">Step One - Pick a flight</h2>
     <form class="card-content" id="choose-flight-form">
         <p class="form-field">
+
             <label>Choose a flight</label>
+
             <select required class="validated-field" id="choose-flight-input">
                 <option value="">No flights Available</option>
             </select>
@@ -48,7 +74,7 @@
     <form class="card-content" id="purchase-ticket-form">
         <p class="form-field">
             <label>Purchase Price</label>
-            <input type="number" required class="validated-field" id="purchase-price">
+            <input  required class="validated-field" id="purchase-price">
         </p>
         <button type="submit">Purchase</button>
     </form>

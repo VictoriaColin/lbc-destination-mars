@@ -3,7 +3,7 @@ import DataStore from '../util/DataStore';
 import FlightClient from "../api/flightClient";
 
 /**
- * Logic needed for the create playlist page of the website.
+ * Logic needed for the create flightList page of the website.
  */
 class FlightAdmin extends BaseClass {
     constructor() {
@@ -13,7 +13,7 @@ class FlightAdmin extends BaseClass {
     }
 
     /**
-     * Once the page has loaded, set up the event handlers and fetch teh concert list.
+     * Once the page has loaded, set up the event handlers and fetch the flight list.
      */
     mount() {
         document.getElementById('refresh').addEventListener('click', this.onRefresh);
@@ -25,9 +25,11 @@ class FlightAdmin extends BaseClass {
         this.fetchFlights();
     }
 
-    async fetchFlights() {
-        const flights = await this.client.getFlights(this.errorHandler)
-
+    async fetchFlights(departureLocation,arrivalLocation,date,errorHandler1) {
+        //const flights = await this.client.getFlights(this.errorHandler)
+        console.log(departureLocation, arrivalLocation, date);
+        const flights = await this.client.getFlights(departureLocation,arrivalLocation,date,errorHandler1);
+        console.log(flights);
         if (flights && flights.length > 0) {
             for (const flight of flights) {
                 flight.reservations = await this.fetchReservations(flight.id);
@@ -35,6 +37,7 @@ class FlightAdmin extends BaseClass {
             }
         }
         this.dataStore.set("flights", flights);
+        console.log(this.datastore.get("flights"));
     }
 
     async fetchReservations(flightId) {
@@ -50,14 +53,16 @@ class FlightAdmin extends BaseClass {
     renderFlights() {
         let flightHtml = "";
         const flights = this.dataStore.get("flights");
-
+        console.log(flights);
         if (flights) {
             for (const flight of flights) {
                 flightHtml += `
                     <div class="card">
                         <h2>${flight.name}</h2>
+                        <div>FlightId: ${flight.flightId}</div>
                         <div>Date: ${flight.date}</div>
-                        <div>Base Price: ${this.formatCurrency(flight.ticketBasePrice)}</div>
+                        <div>DepartureLocation${flight.departureLocation}</div>
+                        <div>ArrivalLocation${flight.arrivalLocation}</div>
                         <p>
                             <h3>Ticket Reservations</h3>
                             <ul>
@@ -120,7 +125,7 @@ class FlightAdmin extends BaseClass {
     }
 
     /**
-     * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
+     * Method to run when the create flightlist submit button is pressed. Call the MusicPlaylistService to create the
      * playlist.
      */
     async onSubmit(event) {
@@ -140,16 +145,19 @@ class FlightAdmin extends BaseClass {
 
         //const baseTicketPrice = document.getElementById('ticket-price').value;
 
-        // Create the concert
+        // Create the flight
         const flight = await this.client.createFlight(flightName, date, departureLocation,arrivalLocation,this.errorHandler);
 
+        this.fetchFlights(departureLocation,arrivalLocation,date, this.errorHandler);
+
+        //renderFlights();
         // Reset the form
         document.getElementById("create-flightlist-form").reset();
 
         // Re-enable the form
         createButton.innerText = 'Create';
         createButton.disabled = false;
-       // this.onRefresh();
+        //this.onRefresh();
     }
 }
 
