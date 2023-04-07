@@ -10,21 +10,21 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "Seat")
 public class SeatRecord {
 
-    private String flightId;
     private String seatNumber;
+    private String flightId;
 
     private Boolean seatReservationClosed;
 
     private String ticketId;
 
-    @DynamoDBHashKey(attributeName = "FlightId")
-    public String getFlightId() {
-        return flightId;
-    }
-
-    @DynamoDBAttribute(attributeName = "SeatNumber")
+    @DynamoDBHashKey(attributeName = "SeatNumber")
     public String getSeatNumber() {
         return seatNumber;
+    }
+
+    @DynamoDBAttribute(attributeName = "FlightId")
+    public String getFlightId() {
+        return flightId;
     }
 
     @DynamoDBAttribute(attributeName = "SeatReservationClosed")
@@ -59,7 +59,7 @@ public class SeatRecord {
         if (this == o) return true;
         if (!(o instanceof SeatRecord)) return false;
         SeatRecord that = (SeatRecord) o;
-        return flightId.equals(that.flightId);
+        return seatNumber.equals(that.seatNumber);
     }
 
     @Override

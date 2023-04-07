@@ -39,12 +39,13 @@ public class SeatAvailabilityController {
 
     @PostMapping
     public ResponseEntity<AddSeatResponse> addNewSeat(@RequestBody AddSeatRequest request) {
-        Seat seat = new Seat(randomUUID().toString(), request.getSeatNumber(), request.getTicketId(), request.getSeatReservationClosed());
+        Seat seat = new Seat(request.getFlightId(), request.getSeatNumber(), request.getTicketId(), request.getSeatReservationClosed());
         seatAvailabilityService.addNewSeat(seat);
         AddSeatResponse seatResponse = new AddSeatResponse();
         seatResponse.setFlightId(seat.getFlightId());
         seatResponse.setSeatNumber(seat.getSeatNumber());
         seatResponse.setTicketId(seat.getTicketId());
+        seatResponse.setSeatReservationResponse(seat.getSeatReservationClosed());
         return ResponseEntity.created(URI.create("/seat/" + seatResponse.getFlightId())).body(seatResponse);
     }
 
