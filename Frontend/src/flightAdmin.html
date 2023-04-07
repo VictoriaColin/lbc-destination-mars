@@ -8,7 +8,7 @@
 <body class="background">
 <header class="header" id="header">
     <div class="site-title">
-        <a class="header_home" href="admin.html">DestinationMars Flight Dashboard</a>
+        <a class="header_home" href="flightAdmin.html">DestinationMars Flight Dashboard</a>
         <a class="header_nav_link button" href="index2.html">Buy Tickets</a>
     </div>
 </header>
@@ -17,18 +17,27 @@
     <h2>Create a Flight</h2>
 
     <form class="card-content" id="create-flightlist-form">
+
         <p class="form-field">
             <label>flight name</label>
-            <input type="text" required class="validated-field" id="flight-name" placeholder="flight name..." autofocus>
+            <input type="text" required class="validated-field" id="flight-name" placeholder="flight name" autofocus>
         </p>
+
+        <p class = "form-field">
+            <label>Flying From</label>
+            <input type="text" required class="validated-field" id="flying-from">
+        </p>
+
+        <p class = "form-field">
+            <label>flying To</label>
+            <input type="text" required class="validated-field" id="flying-to">
+        </p>
+
         <p class="form-field">
             <label>date</label>
             <input type="date" required id="date" class="date validated-field">
         </p>
-        <p class="form-field">
-            <label>What is the minimum ticket price?</label>
-            <input type="number" required class="validated-field" id="ticket-price" placeholder="0">
-        </p>
+
         <button type="submit" id="create-flight">Create</button>
     </form>
 </div>
