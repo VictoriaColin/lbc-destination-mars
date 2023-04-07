@@ -16,11 +16,11 @@ module.exports = {
     create_accountPage: path.resolve(__dirname, 'src', 'pages', 'create_accountPage.js'),
     customer_dashboardPage: path.resolve(__dirname, 'src', 'pages', 'customer_dashboardPage.js'),
     customer_signinPage: path.resolve(__dirname, 'src', 'pages', 'customer_signinPage.js'),
-//    flightsPage: path.resolve(__dirname, 'src', 'pages', 'flightsPage.js'),
+    flightsPage: path.resolve(__dirname, 'src', 'pages', 'flightsPage.js'),
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
     payment_confPage: path.resolve(__dirname, 'src', 'pages', 'payment_confPage.js'),
     payscreenPage: path.resolve(__dirname, 'src', 'pages', 'payscreenPage.js'),
-//    searchPage: path.resolve(__dirname, 'src', 'pages', 'searchPage.js'),
+    searchPage: path.resolve(__dirname, 'src', 'pages', 'searchPage.js'),
     updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
     update_changesPage: path.resolve(__dirname, 'src', 'pages', 'update_changesPage.js'),
     update_confPage: path.resolve(__dirname, 'src', 'pages', 'update_confPage.js'),
@@ -104,11 +104,11 @@ module.exports = {
           filename: 'payscreen.html',
           inject: false
         }),
-//    new HtmlWebpackPlugin({
-//              template: './src/search.html',
-//              filename: 'search.html',
-//              inject: false
-//            }),
+    new HtmlWebpackPlugin({
+              template: './src/search.html',
+              filename: 'search.html',
+              inject: false
+            }),
     new HtmlWebpackPlugin({
               template: './src/update.html',
               filename: 'update.html',
