@@ -10,12 +10,9 @@
 <header>
     <div class="header-box">
         <div class="logo" style="display: flex">
-            <h1>
-                <a href="search.html"> <img src="images/spacehship2.png" alt="logo"> </a>
-                <!--Name of website next to logo-->
-                <span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+            <a href="index.html"> <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
                 <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
-            </h1>
+            </h1> </a>
         </div>
 
         <!--Nav links to customer account dashboard-->
@@ -42,31 +39,30 @@
 
         <div class="cc_num">
             Credit Card #
-            <input required id="cc" type="tel" name="card_number" size="18" minlength="19" maxlength="19"
+            <input id="cc" type="tel" name="card_number" size="18" minlength="16" maxlength="19"
                    placeholder="5555 5555 5555 5555">
         </div>
 
 
         <div class="cc_exp">
             Exp
-            <input required id="exp" type="tel" name="exp_date" placeholder="MM / YY" minlength="5" maxlength="5">
+            <input id="exp" type="tel" name="exp_date" placeholder="MM / YY" minlength="4" maxlength="5">
         </div>
 
 
         <div class="cc_cvv">
             CVV
-            <input required id="cvv" type="tel" name="cvv" placeholder="123" minlength="3" maxlength="3">
+            <input id="cvv" type="tel" name="cvv" placeholder="123" minlength="3" maxlength="3">
         </div>
 
 
         <div class="button" id="button">
-            <a href="payment_conf.html">
-                <button>Pay Now</button>
-            </a>
+            <button>Pay Now</button>
         </div>
 
-
-
+        <div class="pay_conf">
+            <p id="conf_message"><b></b></p>
+        </div>
 
 
     </div>

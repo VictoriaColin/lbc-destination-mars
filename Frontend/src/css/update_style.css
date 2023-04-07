@@ -8,7 +8,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-family: sans-serif;
     font-weight: 400;
 }
@@ -49,13 +49,48 @@ header{
 
 /*header end*/
 
+.confirmation_container{
+    height: 150px;
+    width: 1500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -400px;
+    margin-left: -750px;
+    padding: 20px;
+    background-color: transparent;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: #990000;
+}
+
+.result{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+button{
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border-color: #990000;
+    background-color: transparent;
+    transform: translateY(10px);
+}
+
+input{
+    width: 300px;
+    height: 25px;
+}
+
 .container{
     height: 400px;
     width: 1500px;
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -250px;
+    margin-top: -200px;
     margin-left: -750px;
     padding: 20px;
     text-align: center;
