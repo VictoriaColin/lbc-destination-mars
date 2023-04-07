@@ -13,7 +13,7 @@ export default class FlightClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getFlights', 'getFlight', 'getReservedTicketsForFlight', 'getPurchasedTicketsForFlight', 'reserveTicket', 'purchaseTicket'];
+        const methodsToBind = ['clientLoaded','getFlights', 'getFlight', 'getReservedTicketsForFlight', 'getPurchasedTicketsForFlight', 'reserveTicket', 'purchaseTicket'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -59,15 +59,15 @@ export default class FlightClient extends BaseClass {
         }
     }
 
-    async createFlight(flightId, date, departureLocation, arrivalLocation, numberOfSeatsReserved, reservationClosed, errorCallback) {
+    async createFlight(flightName, date, departureLocation, arrivalLocation, errorCallback) {
         try {
             const response = await this.client.post(`flight`, {
-                  flightId: flightId,
-                  date: date,
+                  flightName: flightName,
+                  //flightId: flightId,
                   departureLocation: departureLocation ,
                   arrivalLocation: arrivalLocation,
-                  numberOfSeatsReserved: numberOfSeatsReserved,
-                  reservationClosed: reservationClosed
+                  date: date
+
             });
             return response.data;
         } catch (error) {

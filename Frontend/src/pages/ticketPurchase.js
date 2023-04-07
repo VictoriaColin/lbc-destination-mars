@@ -14,7 +14,7 @@ class TicketPurchase extends BaseClass {
 
         // Possible States of the page
         this.LOADING = 0;
-        this.CHOOSE_CONCERT = 1
+        this.CHOOSE_FLIGHT = 1
         this.RESERVE_TICKET = 2
         this.PURCHASE_TICKET = 3
         this.DONE = 4
@@ -36,7 +36,7 @@ class TicketPurchase extends BaseClass {
         // Get the concerts
         const flights = await this.client.getFlights();
 
-        if (concerts && concerts.length > 0) {
+        if (flights && flights.length > 0) {
             this.dataStore.set('flights', flights);
             this.dataStore.set("state", this.CHOOSE_FLIGHT);
         } else if (flights.length === 0) {

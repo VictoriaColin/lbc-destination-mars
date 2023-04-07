@@ -17,6 +17,7 @@ class FlightAdmin extends BaseClass {
      */
     mount() {
         document.getElementById('refresh').addEventListener('click', this.onRefresh);
+        // collecting elements from the form
         document.getElementById('create-flightlist-form').addEventListener('submit', this.onSubmit);
 
         this.client = new FlightClient();
@@ -134,10 +135,13 @@ class FlightAdmin extends BaseClass {
         // Get the values from the form inputs
         const flightName = document.getElementById('flight-name').value;
         const date = document.getElementById('date').value;
-        const baseTicketPrice = document.getElementById('ticket-price').value;
+        const  departureLocation = document.getElementById('flying-from').value;
+        const  arrivalLocation = document.getElementById('flying-to').value;
+
+        //const baseTicketPrice = document.getElementById('ticket-price').value;
 
         // Create the concert
-        const flight = await this.client.createFlight(flightName, date, baseTicketPrice);
+        const flight = await this.client.createFlight(flightName, date, departureLocation,arrivalLocation,this.errorHandler);
 
         // Reset the form
         document.getElementById("create-flightlist-form").reset();
@@ -145,7 +149,7 @@ class FlightAdmin extends BaseClass {
         // Re-enable the form
         createButton.innerText = 'Create';
         createButton.disabled = false;
-        this.onRefresh();
+       // this.onRefresh();
     }
 }
 

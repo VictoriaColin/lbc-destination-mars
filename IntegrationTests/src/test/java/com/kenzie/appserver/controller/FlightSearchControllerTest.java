@@ -52,6 +52,7 @@ public class FlightSearchControllerTest {
         addFlightRequest.setDate(LocalDate.now());
         addFlightRequest.setTicketBasePrice(ticketBasePrice);
 
+        // serialization and deserialization of API date and time
         mapper.registerModule(new JavaTimeModule());
 
         // WHEN
