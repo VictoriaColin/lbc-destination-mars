@@ -1,33 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome | Destination: MARS</title>
-    <link rel="stylesheet" href="./css/index_style.css">
+    <title>Destination: MARS</title>
+    <link rel="stylesheet" href="./css/search_style.css">
 </head>
 <body>
 
 
-<div class="container">
+<header>
+    <div class="header-box">
+        <div class="header" style="display: flex">
 
-    <div class="fade_in">
-        <!--Free use image: https://www.freepik.com/free-photo/male-astronaut-protecting-his-eyes-from-sun-during-space-mission-another-planet_21872915.htm-->
+            <div id="logo">
+                <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+                    <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
+                </h1>
+            </div>
+        </div>
+        <!--Nav links to customer account dashboard-->
+        <div class="navlink">
+            <ul id="loginlink">
+                <li> <a href="create_account.html"> Create Account </a></li>
+                <li> <a href="customer_signin.html"> Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
 
-<!--           <img width="1500" id="astroPic" src="images/astronaut.jpg">-->
-
-        <div id="astroPic"> </div>
-
-         </div>
 
 
-         <div class="message">
-             <p>Become a trailblazing pioneer in humanity's next era.
-                 Join <br/><span style="font-family:Georgia, 'Times New Roman', Times, serif; background-color: transparent;">Destination:</span>
-                 <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span><br/> today.</p>
-             <a href="create_account.html">Create account /</a>
-             <a href="customer_signin.html">Sign in</a>
+<div class="search">
+    <select required name="from" id="from_location">
+        <option value="none" selected disabled hidden>Leaving from</option>
+        <option value="florida"> Cape Canaveral, Fl </option>
+        <option value="california"> Vandenberg, Ca </option>
+    </select>
 
-         </div>
+    <select required name="to" id="to_location">
+        <option value="none" selected disabled hidden>Going to</option>
+        <option value="nili"> Nili Fossae </option>
+        <option value="holden"> Holden Crater </option>
+        <option value="jezero"> Jezero Crater </option>
+        <option value="mawrth"> Marwth Vallis </option>
+    </select>
+    <input type="date" id="depart_date" name="depart" class="depart_date" required/>
+    <!--<button type="submit" class="button"> Find Flights </button>-->
+    <div class="button_area">
+        <input type="submit" class="button" id="submit-button"/>
+    </div>
+</div>
 
-     </div>
-     </body>
-     </html>
+<div class="disclaimer">
+    <p id="disclaimer">*All flights are one way</p>
+</div>
+
+<div class="flights_container">
+    <div class="greeting">
+        <h3>Showing flights</h3>
+    </div>
+
+
+    <!--to select individual flights, look up how to do with js-->
+    <div class="flights">
+        <p class="results" id="flights"></p>
+    </div>
+
+
+    <div class="flight_submission">
+        <div class="instr">
+            <label id="instr">Enter desired flight id here.<br/></label>
+            <input type="text" id="flight_id">
+            <a href="checkout.html" class="reserve_button">
+                <button id="button"> Reserve Ticket</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+</main>
+</body>
+</html>
