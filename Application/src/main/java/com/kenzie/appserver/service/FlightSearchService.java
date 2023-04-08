@@ -45,8 +45,6 @@ public class FlightSearchService {
                         record.getTotalSeatCapacity(),
                         record.getTicketBasePrice(),
                         record.getReservationClosed()));
-            }else{
-                throw new ItemNotFoundException("No Flights available");
             }
         }
         return flights;

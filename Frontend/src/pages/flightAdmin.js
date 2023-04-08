@@ -58,7 +58,7 @@ class FlightAdmin extends BaseClass {
             for (const flight of flights) {
                 flightHtml += `
                     <div class="card">
-                        <h2>${flight.name}</h2>
+                        <h2>Flight Detail</h2>
                         <div>FlightId: ${flight.flightId}</div>
                         <div>Date: ${flight.date}</div>
                         <div>DepartureLocation${flight.departureLocation}</div>
