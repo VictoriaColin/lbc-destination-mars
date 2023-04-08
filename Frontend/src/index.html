@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Destination: MARS</title>
+    <script type="text/javascript" src="indexPage.js"></script>
     <link rel="stylesheet" href="./css/search_style.css">
 </head>
 <body>
@@ -32,16 +33,16 @@
 <div class="search">
     <select required name="from" id="from_location">
         <option value="none" selected disabled hidden>Leaving from</option>
-        <option value="florida"> Cape Canaveral, Fl </option>
-        <option value="california"> Vandenberg, Ca </option>
+        <option value="FL"> Cape Canaveral, Fl </option>
+        <option value="CA"> Vandenberg, Ca </option>
     </select>
 
     <select required name="to" id="to_location">
         <option value="none" selected disabled hidden>Going to</option>
-        <option value="nili"> Nili Fossae </option>
-        <option value="holden"> Holden Crater </option>
-        <option value="jezero"> Jezero Crater </option>
-        <option value="mawrth"> Marwth Vallis </option>
+        <option value="Nili Fossae"> Nili Fossae </option>
+        <option value="Holden Crater"> Holden Crater </option>
+        <option value="Jezero Crater"> Jezero Crater </option>
+        <option value="Mawrth Vallis"> Marwth Vallis </option>
     </select>
     <input type="date" id="depart_date" name="depart" class="depart_date" required/>
     <!--<button type="submit" class="button"> Find Flights </button>-->
@@ -69,9 +70,9 @@
     <div class="flight_submission">
         <div class="instr">
             <label id="instr">Enter desired flight id here.<br/></label>
-            <input type="text" id="flight_id">
+            <input type="text" id="flight-id"/>
             <a href="checkout.html" class="reserve_button">
-                <button id="button"> Reserve Ticket</button>
+                <button id="reserve-button"> Reserve Ticket</button>
             </a>
         </div>
 

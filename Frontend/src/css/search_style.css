@@ -202,7 +202,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
         grid-area: 2 / 2;
     }
 
-    #flight_id{
+    #flight-id{
         grid-area: 2 / 2;
         width: 200px;
         height: 25px;
