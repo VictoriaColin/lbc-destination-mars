@@ -17,6 +17,10 @@ public class SeatUpdateRequest {
     @JsonProperty("ticketId")
     private String ticketId;
 
+    @NotEmpty
+    @JsonProperty("seatReservationClosed")
+    private Boolean seatReservationClosed;
+
     public String getFlightId() {
         return flightId;
     }
@@ -39,5 +43,13 @@ public class SeatUpdateRequest {
 
     public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public Boolean getSeatReservationClosed() {
+        return seatReservationClosed;
+    }
+
+    public void setSeatReservationClosed(Boolean seatReservationClosed) {
+        this.seatReservationClosed = seatReservationClosed;
     }
 }

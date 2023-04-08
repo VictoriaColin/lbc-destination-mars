@@ -24,6 +24,10 @@ public class AddSeatResponse {
     @JsonProperty("ticketId")
     private String ticketId;
 
+    @NotEmpty
+    @JsonProperty("seatReservationResponse")
+    private Boolean seatReservationResponse;
+
     public String getFlightName() {
         return flightName;
     }
@@ -54,5 +58,13 @@ public class AddSeatResponse {
 
     public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public Boolean isSeatReservationResponse() {
+        return seatReservationResponse;
+    }
+
+    public void setSeatReservationResponse(Boolean seatReservationResponse) {
+        this.seatReservationResponse = seatReservationResponse;
     }
 }

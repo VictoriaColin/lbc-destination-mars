@@ -11,6 +11,9 @@ import java.util.*;
 @Service
 public class SeatAvailabilityService {
 
+    private static final String ERROR_CODE = "4000";
+    private static final String APPROVAL_CODE = "2000";
+
     SeatRepository seatRepository;
     @Autowired
     public SeatAvailabilityService(SeatRepository seatRepository) {

@@ -68,9 +68,6 @@ private  FlightService flightService;
         Double ticketBasePrice = 100000.000;
         Flight flight = new Flight(flightID,flightName,date,departureLocation,arrivalLocation,totalSeatCapacity,ticketBasePrice,reservationClosed);
 
-
-
-
         when(reservedTicketService.findByReservedTicketId(ticketID)).thenReturn(reservedTicket);
         when(flightService.findByFlightId(flightID)).thenReturn(flight);
 

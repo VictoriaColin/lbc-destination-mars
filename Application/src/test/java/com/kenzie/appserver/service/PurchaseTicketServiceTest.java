@@ -42,7 +42,6 @@ public class PurchaseTicketServiceTest {
 
     }
 
-
     /** ------------------------------------------------------------------------
      *  purchasedTicketService.purchaseTicket
      *  ------------------------------------------------------------------------ **/
@@ -56,22 +55,25 @@ public class PurchaseTicketServiceTest {
         String departureLocation = "FL";
         String arrivalLocation = "MARS";
         String dateofReservation = LocalDateTime.now().toString();
-        Boolean reservationClosed = false;
+        Boolean reservationClosed = true;//false;
         String dateofReservationClosed = null;
         Integer numberOfSeastsReserved = 10;
-        Boolean purchasedTicket = true;
+        Boolean isTickedPurchased = true;
+
+        // mock for reserve ticket
         ReservedTicket reservedTicket = new ReservedTicket(flightID,flightName,ticketID,departureLocation,arrivalLocation,dateofReservation,
-                reservationClosed,dateofReservationClosed,numberOfSeastsReserved, purchasedTicket);
+                reservationClosed,"dateofReservationClosed",numberOfSeastsReserved, false);
+
+        ReservedTicket updatedTicket = new ReservedTicket(flightID,flightName,ticketID,departureLocation,arrivalLocation,dateofReservation,
+                reservationClosed,dateofReservationClosed,numberOfSeastsReserved, isTickedPurchased);
 
         String date = LocalDateTime.now().plusDays(2).toString();
         Integer totalSeatCapacity = 10;
         Double ticketBasePrice = 100000.000;
         Flight flight = new Flight(flightID,flightName,date,departureLocation,arrivalLocation,totalSeatCapacity,ticketBasePrice,reservationClosed);
 
-
-
-
         when(reservedTicketService.findByReservedTicketId(ticketID)).thenReturn(reservedTicket);
+        when(reservedTicketService.updateReserveTicket(updatedTicket)).thenReturn(updatedTicket);
         when(flightService.findByFlightId(flightID)).thenReturn(flight);
 
         PurchasedTicket purchasedTicket1 = purchasedTicketService.purchaseTicket(ticketID,numberOfSeastsReserved);
@@ -86,7 +88,6 @@ public class PurchaseTicketServiceTest {
 
     @Test
     void findByFlightId(){
-
 
         String flightid = randomUUID().toString();
 

@@ -29,13 +29,16 @@ class TicketPurchase extends BaseClass {
         document.getElementById('reserve-ticket-button').addEventListener('click', this.onReserveTicket);
         document.getElementById('purchase-ticket-form').addEventListener('submit', this.onPurchaseTicket);
         this.dataStore.addChangeListener(this.onStateChange);
+        document.getElementById('find-flight').addEventListener('click', (e)=>{this.renderOptions(e)});
         // Start on the loading page
         this.dataStore.set("state", this.LOADING);
 
         this.client = new FlightClient();
         // Get the concerts
-        const flights = await this.client.getFlights();
-
+        //const flights = await this.client.getFlights();
+        let flights;
+        //this.renderOptions();
+        if(flights){
         if (flights && flights.length > 0) {
             this.dataStore.set('flights', flights);
             this.dataStore.set("state", this.CHOOSE_FLIGHT);
@@ -44,6 +47,7 @@ class TicketPurchase extends BaseClass {
             this.errorHandler("There are no flights listed!");
         } else {
             this.errorHandler("Could not retrieve flights!");
+        }
         }
     }
 
@@ -100,7 +104,7 @@ class TicketPurchase extends BaseClass {
             doneSection.classList.add("active")
             noFlightSection.classList.remove("active")
             this.renderDonePage();
-        } else if (state === this.NO_CONCERTS) {
+        } else if (state === this.NO_FLIGHTS) {
             loadingSection.classList.remove("active")
             chooseFlightSection.classList.remove("active")
             reserveTicketSection.classList.remove("active")
@@ -116,6 +120,7 @@ class TicketPurchase extends BaseClass {
         let flightSelect = document.getElementById("choose-flight-input");
 
         const flights = this.dataStore.get("flights");
+
 
         let options = "";
         for (const flight of flights) {
@@ -157,30 +162,57 @@ class TicketPurchase extends BaseClass {
         `;
     }
 
+    async renderOptions(e){
+    e.preventDefault();
+    console.log("render options");
+    const options = document.getElementById("choose-flight-input");
+
+    const optionFrom = document.getElementById("flying-from").value;
+    const optionTo = document.getElementById("flying-to").value;
+    const optionDate = document.getElementById("date").value;
+    // get request here
+        const flights =await this.client.getFlights(optionFrom,optionTo,optionDate,this.errorHandler);//this.dataStore.get("flights");
+        console.log(flights);
+        if(flights){
+        for(const flight of flights){
+        options.innerHTML += `<option >${flight.flightId}</option>`
+    }}
+    }
+
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onSelectFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-
+        console.log("onSelectFlight");
         let flightId = document.getElementById("choose-flight-input").value;
+        console.log(flightId);
+
+        const optionFrom = document.getElementById("flying-from").value;
+        const optionTo = document.getElementById("flying-to").value;
+        const optionDate = document.getElementById("date").value;
 
         // Get the object of the selected concert so we can store it.
-        const flights = this.dataStore.get("flights");
+        const flights =await this.client.getFlights(optionFrom,optionTo,optionDate,this.errorHandler);//this.dataStore.get("flights");
+        //console.log(flights);
+        if(flights){
         let selectedFlight = null;
         for (const flight of flights) {
             if (flight.id === flightId) {
                 selectedFlight = flight;
+                console.log(selectedFlight);
             }
         }
-
         if (selectedFlight) {
+            const selectedFlight =
             this.dataStore.set("selectedFlight", selectedFlight);
             this.dataStore.set("state", this.RESERVE_TICKET)
+        }
         }
     }
 
     async onReserveTicket() {
+
         const flight = this.dataStore.get("selectedFlight");
         const ticketReservation = await this.client.reserveTicket(flight.id, this.errorHandler);
 
