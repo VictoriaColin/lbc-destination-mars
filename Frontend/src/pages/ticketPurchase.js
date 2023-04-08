@@ -184,25 +184,35 @@ class TicketPurchase extends BaseClass {
     async onSelectFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-
+        console.log("onSelectFlight");
         let flightId = document.getElementById("choose-flight-input").value;
+        console.log(flightId);
+
+        const optionFrom = document.getElementById("flying-from").value;
+        const optionTo = document.getElementById("flying-to").value;
+        const optionDate = document.getElementById("date").value;
 
         // Get the object of the selected concert so we can store it.
-        const flights = this.dataStore.get("flights");
+        const flights =await this.client.getFlights(optionFrom,optionTo,optionDate,this.errorHandler);//this.dataStore.get("flights");
+        //console.log(flights);
+        if(flights){
         let selectedFlight = null;
         for (const flight of flights) {
             if (flight.id === flightId) {
                 selectedFlight = flight;
+                console.log(selectedFlight);
             }
         }
-
         if (selectedFlight) {
+            const selectedFlight =
             this.dataStore.set("selectedFlight", selectedFlight);
             this.dataStore.set("state", this.RESERVE_TICKET)
+        }
         }
     }
 
     async onReserveTicket() {
+
         const flight = this.dataStore.get("selectedFlight");
         const ticketReservation = await this.client.reserveTicket(flight.id, this.errorHandler);
 
