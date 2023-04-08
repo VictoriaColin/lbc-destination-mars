@@ -5,10 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.kenzie.appserver.IntegrationTest;
 import com.kenzie.appserver.controller.model.CardValidationRequest;
 import com.kenzie.appserver.controller.model.CardValidationResponse;
-import com.kenzie.appserver.controller.model.ReservedTicketResponse;
 import com.kenzie.appserver.service.CreditCardService;
-import com.kenzie.appserver.service.model.Card;
-import com.kenzie.appserver.service.model.CardValidationResult;
 import net.andreinc.mockneat.MockNeat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-
-import static org.apache.http.client.methods.RequestBuilder.post;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @IntegrationTest

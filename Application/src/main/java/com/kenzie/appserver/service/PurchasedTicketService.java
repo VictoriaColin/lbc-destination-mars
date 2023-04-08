@@ -34,7 +34,12 @@ public class PurchasedTicketService {
         this.reservedTicketService = reservedTicketService;
     }
 
-    
+    public PurchasedTicketService(PurchasedTicketRepository purchasedTicketRepository, ReservedTicketService reservedTicketService, FlightService flightService) {
+        this.purchasedTicketRepository = purchasedTicketRepository;
+        this.reservedTicketService = reservedTicketService;
+        this.flightService = flightService;
+    }
+
     public PurchasedTicket purchaseTicket(String reservedTicketId, Integer numberOfSeatsReserved) {
 
         ReservedTicket reservedTicket = reservedTicketService.findByReservedTicketId(reservedTicketId);

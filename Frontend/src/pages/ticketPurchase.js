@@ -204,7 +204,6 @@ class TicketPurchase extends BaseClass {
             }
         }
         if (selectedFlight) {
-            const selectedFlight =
             this.dataStore.set("selectedFlight", selectedFlight);
             this.dataStore.set("state", this.RESERVE_TICKET)
         }

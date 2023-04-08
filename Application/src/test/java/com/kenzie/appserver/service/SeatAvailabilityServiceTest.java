@@ -108,6 +108,33 @@ public class SeatAvailabilityServiceTest {
     }
 
     @Test
+    void addNewSeat(){
+        String flightId = "SPX1002";
+        String seatNumber = "22";
+        Seat seat = new Seat(flightId,seatNumber,null,false);
+        ArgumentCaptor<SeatRecord> seatRecordArgumentCaptor = ArgumentCaptor.forClass(SeatRecord.class);
+
+        // WHEN
+        Seat newSeat = subject.addNewSeat(seat);
+
+        // THEN
+        assertNotNull(newSeat);
+
+        verify(seatRepository).save(seatRecordArgumentCaptor.capture());
+
+        SeatRecord seatRecord = seatRecordArgumentCaptor.getValue();
+        assertNotNull(seatRecord, "The seat record is returned");
+        Assertions.assertEquals(seatRecord.getFlightId(),seat.getFlightId(),"The flight id matches");
+        Assertions.assertEquals(seatRecord.getSeatNumber(),seat.getSeatNumber(),"The seat number matches");
+        Assertions.assertEquals(seatRecord.getTicketId(),seat.getTicketId(),"The ticket id matches");
+        Assertions.assertEquals(seatRecord.getSeatReservationClosed(),seat.getSeatReservationClosed(),"The reservation status matches");
+
+
+    }
+
+
+
+    @Test
     void updateReservation(){
         String flightId = "SPX1002";
         String seatNumber = "22";

@@ -25,6 +25,7 @@ public class FlightService {
 
     }
 
+
     public List<Flight> findAllFlights() {
         List<Flight> flights = new ArrayList<>();
 
