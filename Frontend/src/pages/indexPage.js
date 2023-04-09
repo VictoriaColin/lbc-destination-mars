@@ -1,6 +1,6 @@
 import BaseClass from '../util/baseClass';
 import DataStore from '../util/DataStore';
-import FlightClient from "../api/flightClient";
+import IndexClient from "../api/indexClient";
 
 /**
  * Logic needed for the create flightList page of the website.
@@ -8,7 +8,7 @@ import FlightClient from "../api/flightClient";
 class IndexPage extends BaseClass {
     constructor() {
         super();
-        this.bindClassMethods(['onSubmit', 'onRefresh', 'onClick', 'renderFlights'], this);
+        this.bindClassMethods(['onSubmit', 'onClick', 'renderFlights'], this);
         this.dataStore = new DataStore();
     }
 
@@ -20,9 +20,8 @@ class IndexPage extends BaseClass {
         // collecting elements from the form
         document.getElementById('submit-button').addEventListener('click', this.onSubmit);
 
-        this.client = new FlightClient();
-        this.dataStore.addChangeListener(this.renderFlights)
-//        this.fetchFlights();
+        this.client = new IndexClient();
+        this.dataStore.addChangeListener(this.renderFlights);
     }
 
     async fetchFlights(departureLocation,arrivalLocation,date,errorHandler1) {
@@ -37,10 +36,11 @@ class IndexPage extends BaseClass {
         // Cookies - how to - https://www.w3schools.com/js/js_cookies.asp
         document.cookie = flightId;
         let x = document.cookie;
-        document.cookie = "ticket=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         console.log(x);
 
-        window.location='checkout.html';
+        if(document.cookie!="") {
+            window.location='checkout.html';
+        }
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -59,51 +59,6 @@ class IndexPage extends BaseClass {
                         <div><b>ArrivalLocation:</b> ${flight.arrivalLocation}</div>
                         <br/>
                     </div>`;
-
-//                            <h3>Ticket Reservations</h3>
-//                            <ul>
-//                `;
-//                if (flight.reservations && flight.reservations.length > 0) {
-//                    for (const reservation of flight.reservations) {
-//                        flightHtml += `
-//                                <li>
-//                                    <div>Ticket ID: ${reservation.ticketId}</div>
-//                                    <div>Date Reserved: ${reservation.dateOfReservation}</div>
-//                                    <div>Reservation Closed: ${reservation.reservationClosed}</div>
-//                                    <div>Date Reservation Closed: ${reservation.dateReservationClosed}</div>
-//                                    <div>Ticket Purchased: ${reservation.purchasedTicket}</div>
-//                                </li>
-//                        `;
-//                    }
-//                } else {
-//                    flightHtml += `
-//                                <li>No Ticket Reservations.</li>
-//                    `;
-//                }
-//                flightHtml += `
-//                            </ul>
-//                        </p>
-//                        <p>
-//                            <h3>Ticket Purchases</h3>
-//                            <ul>
-//                `;
-//                if (flight.purchases && flight.purchases.length > 0) {
-//                    for (const purchase of flight.purchases) {
-//                        flightHtml += `
-//                                <li>
-//                                    <div>Ticket ID: ${purchase.ticketId}</div>
-//                                    <div>Date Purchased: ${purchase.dateOfPurchase}</div>
-//                                    <div>Price Paid: ${purchase.pricePaid}</div>
-//                                </li>
-//                        `;
-//                    }
-//                } else {
-//                    flightHtml += `
-//                                <li>No Ticket Purchases.</li>
-//                    `;
-//                }
-
-
             }
         } else {
             flightHtml = `<div>There are no flights...</div>`;
@@ -114,9 +69,9 @@ class IndexPage extends BaseClass {
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
-    onRefresh() {
-        this.fetchFlights();
-    }
+//    onRefresh() {
+//        this.fetchFlights();
+//    }
 
     async onClick(event) {
         // Prevent button from refreshing the page
@@ -141,12 +96,16 @@ class IndexPage extends BaseClass {
         const flightName = "testFlight";
         const date = document.getElementById('depart_date').value;
         const  departureLocation = document.getElementById('from_location').value;
-        const  arrivalLocation = document.getElementById('to_location').value
+        const  arrivalLocation = document.getElementById('to_location').value;
 
         // Create the flight
         const flight = await this.client.createFlight(flightName, date, departureLocation,arrivalLocation,this.errorHandler);
 
         this.fetchFlights(departureLocation,arrivalLocation,date, this.errorHandler);
+
+        document.getElementById('depart_date').value = null;
+        document.getElementById('from_location').value = "none";
+        document.getElementById('to_location').value = "none";
     }
 }
 

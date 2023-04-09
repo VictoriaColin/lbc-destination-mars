@@ -1,6 +1,6 @@
 import BaseClass from '../util/baseClass';
 import DataStore from '../util/DataStore';
-import FlightClient from "../api/flightClient";
+import CheckoutClient from "../api/checkoutClient";
 
 /**
  * Logic needed for the checkout page of the website.
@@ -21,15 +21,23 @@ class CheckoutPage extends BaseClass {
         document.getElementById('baggage_options').addEventListener('click', this.onClick);
         document.getElementById('food_options').addEventListener('click', this.onClick);
 
-        this.client = new FlightClient();
+        this.client = new CheckoutClient();
         this.dataStore.addChangeListener(this.renderFlights);
         this.fetchFlight();
     }
 
+    /*
+     * Method runs once page is loaded. Brings in flight information depending on which
+     * flightId was selected on search screen.
+     */
     async fetchFlight() {
+        // Retrieve cookie.
         let flightInfo = document.cookie;
+
+        // Print cookie (flightId) to console.
         console.log(flightInfo);
 
+        // Retrieve the flight by flightId
         const flight = await this.client.getFlight(flightInfo, this.errorHandler);
         this.dataStore.set("flights", flight);
     }
@@ -56,11 +64,6 @@ class CheckoutPage extends BaseClass {
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
-
-    onRefresh() {
-        console.log("checking");
-        this.fetchFlight();
-    }
 
     /*
      *Method to run when dropdown box items have changed.

@@ -13,7 +13,7 @@ export default class IndexClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'searchFlights', 'getFlights', 'getFlight', 'getReservedTicketsForFlight', 'getPurchasedTicketsForFlight', 'reserveTicket', 'purchaseTicket'];
+        const methodsToBind = ['clientLoaded','getFlights', 'reserveTicket', 'createFlight'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -35,36 +35,20 @@ export default class IndexClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns an array of flight
      */
-    async searchFlights(date, departureLocation, arrivalLocation, errorCallback) {
+    async getFlights(departureLocation, arrivalLocation, date, errorCallback) {
+    console.log(departureLocation, arrivalLocation, date)
         try {
-            const response = await this.client.post(`/flight/search`);
+            const response = await this.client.post(`/flight/search`,
+            {
+            "departureLocation": departureLocation ,
+            "arrivalLocation": arrivalLocation,
+            "date": date
+
+            }
+            );
             return response.data;
         } catch(error) {
             this.handleError("getFlights", error, errorCallback);
-        }
-    }
-
-    async getFlights(errorCallback) {
-            try {
-                const response = await this.client.get(`/flight`);
-                return response.data;
-            } catch(error) {
-                this.handleError("getFlights", error, errorCallback);
-            }
-        }
-
-    /**
-     * Gets the flight for the given ID.
-     * @param id Unique identifier for a flight
-     * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The flight
-     */
-    async getFlight(flightId, errorCallback) {
-        try {
-            const response = await this.client.get(`/flight/${flightId}`);
-            return response.data.flight;
-        } catch (error) {
-            this.handleError("getFlight", error, errorCallback)
         }
     }
 
@@ -72,7 +56,6 @@ export default class IndexClient extends BaseClass {
         try {
             const response = await this.client.post(`flight`, {
                   flightName: flightName,
-                  //flightId: flightId,
                   departureLocation: departureLocation ,
                   arrivalLocation: arrivalLocation,
                   date: date
@@ -85,37 +68,7 @@ export default class IndexClient extends BaseClass {
     }
 
     /**
-     *
-     * @param concertId
-     * @param errorCallback
-     * @returns {Promise<*>}
-     */
-    async getReservedTicketsForFlight(flightId, errorCallback) {
-        try {
-            const response = await this.client.get(`reservedtickets/flight/${flightId}`);
-            return response.data;
-        } catch (error) {
-            this.handleError("getReservedTicketForFlight", error, errorCallback);
-        }
-    }
-
-    /**
-     *
-     * @param concertId
-     * @param errorCallback
-     * @returns {Promise<*>}
-     */
-    async getPurchasedTicketsForFlight(flightId, errorCallback) {
-        try {
-            const response = await this.client.get(`purchasedtickets/flight/${flightId}`);
-            return response.data;
-        } catch (error) {
-            this.handleError("getPurchasedTicketsForFlight", error, errorCallback);
-        }
-    }
-
-    /**
-     * Create a new playlist.
+     * Create a new flightList.
      * @param name The name of the playlist to create.
      * @param customerId The user who is the owner of the playlist.
      * @param tags Metadata tags to associate with a playlist.
@@ -130,25 +83,6 @@ export default class IndexClient extends BaseClass {
             return response.data;
         } catch (error) {
             this.handleError("reserveTicket", error, errorCallback);
-        }
-    }
-
-    /**
-     * Add a song to a playlist.
-     * @param id The id of the playlist to add a song to.
-     * @param asin The asin that uniquely identifies the album.
-     * @param trackNumber The track number of the song on the album.
-     * @returns The list of songs on a playlist.
-     */
-    async purchaseTicket(ticketId, pricePaid, errorCallback) {
-        try {
-            const response = await this.client.post(`purchasedtickets`, {
-                ticketId: ticketId,
-                pricePaid: pricePaid
-            });
-            return response.data;
-        } catch (error) {
-            this.handleError("purchaseTicket", error, errorCallback);
         }
     }
 
