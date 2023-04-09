@@ -22,38 +22,22 @@ class IndexPage extends BaseClass {
 
         this.client = new FlightClient();
         this.dataStore.addChangeListener(this.renderFlights)
-        this.fetchFlights();
+//        this.fetchFlights();
     }
 
     async fetchFlights(departureLocation,arrivalLocation,date,errorHandler1) {
         console.log(departureLocation, arrivalLocation, date);
         const flights = await this.client.getFlights(departureLocation,arrivalLocation,date,errorHandler1);
-        console.log(flights);
-//        if (flights && flights.length > 0) {
-//            for (const flight of flights) {
-//                flight.reservations = await this.fetchReservations(flight.id);
-//                flight.purchases = await this.fetchPurchases(flight.id);
-//            }
-//        }
         this.dataStore.set("flights", flights);
-        console.log(flights);
     }
 
-//    async fetchReservations(flightId) {
-//        return await this.client.getReservedTicketsForFlight(flightId, this.errorHandler);
-//    }
-//
-//    async fetchPurchases(flightId) {
-//        return await this.client.getPurchasedTicketsForFlight(flightId, this.errorHandler);
-//    }
-
     async reserveFlight(flightId, errorHandler1) {
-        console.log("click3")
-        console.log(flightId);
         const reservedFlight = await this.client.reserveTicket(flightId, errorHandler1);
 
+        // Cookies - how to - https://www.w3schools.com/js/js_cookies.asp
         document.cookie = flightId;
         let x = document.cookie;
+        document.cookie = "ticket=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         console.log(x);
 
         window.location='checkout.html';

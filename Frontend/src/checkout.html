@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Checkout | Destination: MARS</title>
+    <script type="text/javascript" src="checkoutPage.js"></script>
     <link rel="stylesheet" href="./css/checkout_style.css">
 </head>
 <body>
@@ -28,13 +29,13 @@
     <div class="flight_info">
         <h3>Trip Summary</h3>
         <!--Can try to create a timer here using js-->
-        <p>Your flight is reserved for the next <b>5</b> minutes.</p>
-        <p>Results</p>
+        <p>Your flight is reserved for the next <b>5</b> minutes. </p> <br/>
+        <p id="reserved-flight"></p>
     </div>
 
 
     <div class="passenger_seats">
-        <h4 class="instructions">Please select your seats (1 seat per passenger).</h4>
+        <h4 class="instructions">Please select your seat.</h4>
 
         <div class="seats_column1">
 
@@ -43,15 +44,15 @@
                 <li class="column 1">
                     <ol class="seats" type="A">
                         <li class="seat">
-                            <input type="checkbox" id="11" />
+                            <input type="radio" id="11" name="seat"/>
                             <label for="11">11</label>
                         </li>
                         <li class="seat">
-                            <input type="checkbox" id="21" />
+                            <input type="radio" id="21" name="seat"/>
                             <label for="21">21</label>
                         </li>
                         <li class="seat">
-                            <input type="checkbox" id="31" />
+                            <input type="radio" id="31" name="seat"/>
                             <label for="31">31</label>
                         </li>
                     </ol>
@@ -65,15 +66,15 @@
             <li class="column 2">
                 <ol class="seats" type="A">
                     <li class="seat">
-                        <input type="checkbox" id="12" />
+                        <input type="radio" id="12" name="seat"/>
                         <label for="12">12</label>
                     </li>
                     <li class="seat">
-                        <input type="checkbox" id="22" />
+                        <input type="radio" id="22" name="seat"/>
                         <label for="22">22</label>
                     </li>
                     <li class="seat">
-                        <input type="checkbox" id="32" />
+                        <input type="radio" id="32" name="seat"/>
                         <label for="32">32</label>
                     </li>
                 </ol>
@@ -85,15 +86,15 @@
             <li class="column 3">
                 <ol class="seats" type="A">
                     <li class="seat">
-                        <input type="checkbox" id="13" />
+                        <input type="radio" id="13" name="seat"/>
                         <label for="12">12</label>
                     </li>
                     <li class="seat">
-                        <input type="checkbox" id="23" />
+                        <input type="radio" id="23" name="seat"/>
                         <label for="23">23</label>
                     </li>
                     <li class="seat">
-                        <input type="checkbox" id="33" />
+                        <input type="radio" id="33" name="seat"/>
                         <label for="33">33</label>
                     </li>
                 </ol>
@@ -123,26 +124,26 @@
         <div class="suit_options">
             <p>Please select a suit.</p>
             <select required name="suit" id="suit_options">
-                <option value="economy">Economy suit</option>
-                <option value="deluxe">Deluxe suit</option>
-                <option value="premium">Premium suit</option>
+                <option value=0>Economy suit</option>
+                <option value=20000>Deluxe suit</option>
+                <option value=50000>Premium suit</option>
             </select>
         </div>
 
         <div class="baggage_options">
             <p>How many baggage items?</p>
             <select required name="baggage" id="baggage_options" class="baggage_options">
-                <option value="1">1</option>
-                <option value="2">2</option>
+                <option value=0>1</option>
+                <option value=10000>2</option>
             </select>
         </div>
 
         <div class="food_options">
             <p>Please select a food package.</p>
             <select required name="food" id="food_options" class="food_options">
-                <option value="tier 1">Gold</option>
-                <option value="tier 2">Diamond</option>
-                <option value="tier 3">Platinum</option>
+                <option value=0>Gold</option>
+                <option value=30000>Diamond</option>
+                <option value=50000>Platinum</option>
             </select>
         </div>
 

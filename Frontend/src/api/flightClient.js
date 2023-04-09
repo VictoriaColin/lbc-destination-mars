@@ -61,7 +61,7 @@ export default class FlightClient extends BaseClass {
     async getFlight(flightId, errorCallback) {
         try {
             const response = await this.client.get(`/flight/${flightId}`);
-            return response.data.flight;
+            return response.data;
         } catch (error) {
             this.handleError("getFlight", error, errorCallback)
         }
