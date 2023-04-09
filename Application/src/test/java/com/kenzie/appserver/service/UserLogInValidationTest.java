@@ -31,7 +31,6 @@ public class UserLogInValidationTest {
 
     @Test
     void validateLogin_isSuccessful(){
-
         String email1= "xyz.whatever.com";
         String password1 = "YTabc3";
         LogInValidationResult result = new LogInValidationResult();

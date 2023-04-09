@@ -154,6 +154,123 @@ class FlightSearchServiceTest {
 
         }
     }
+    @Test
+    void searchFlights_isUnSuccessful_DateOfOneRecord_DoesNotMatch() {
+        LocalDate date = LocalDate.parse("2003-07-01");
+        String departureLocation = "FL";
+        String arrivalLocation = "MARS";
+
+        FlightRecord record = new FlightRecord();
+        record.setId(randomUUID().toString());
+        record.setFlightName("SPX2000");
+        record.setDate(String.valueOf(date));
+        record.setDepartureLocation(departureLocation);
+        record.setArrivalLocation(arrivalLocation);
+        record.setTotalSeatCapacity(10);
+        record.setTicketBasePrice(100000.000);
+        record.setReservationClosed(false);
+
+
+        LocalDate date2 = LocalDate.parse("2003-07-03");
+        FlightRecord record2 = new FlightRecord();
+        record2.setId(randomUUID().toString());
+        record2.setFlightName("SPX2001");
+        record2.setDate(String.valueOf(date2));
+        record2.setDepartureLocation(departureLocation);
+        record2.setArrivalLocation(arrivalLocation);
+        record2.setTotalSeatCapacity(10);
+        record2.setTicketBasePrice(100000.000);
+        record2.setReservationClosed(false);
+
+        List<FlightRecord> flightRecords = new ArrayList<>();
+        flightRecords.add(record);
+        flightRecords.add(record2);
+        when(flightRepository.findAll()).thenReturn(flightRecords);
+
+        List<Flight> flights = subject.searchFlights(date, departureLocation, arrivalLocation);
+
+        Assertions.assertNotNull(flights, "The FLight list is returned");
+        Assertions.assertEquals(1, flights.size(), "The is only one available flights");
+
+    }
+    @Test
+    void searchFlights_isUnSuccessful_ArrivalLocationDoesNotMatch() {
+        LocalDate date = LocalDate.parse("2003-07-01");
+        String departureLocation = "FL";
+        String arrivalLocation = "MARS";
+
+        FlightRecord record = new FlightRecord();
+        record.setId(randomUUID().toString());
+        record.setFlightName("SPX2000");
+        record.setDate(String.valueOf(date));
+        record.setDepartureLocation(departureLocation);
+        record.setArrivalLocation(arrivalLocation);
+        record.setTotalSeatCapacity(10);
+        record.setTicketBasePrice(100000.000);
+        record.setReservationClosed(false);
+
+        FlightRecord record2 = new FlightRecord();
+        record2.setId(randomUUID().toString());
+        record2.setFlightName("SPX2001");
+        record2.setDate(String.valueOf(date));
+        record2.setDepartureLocation("MOON");
+        record2.setArrivalLocation("MOON");
+        record2.setTotalSeatCapacity(10);
+        record2.setTicketBasePrice(100000.000);
+        record2.setReservationClosed(false);
+
+        List<FlightRecord> flightRecords = new ArrayList<>();
+        flightRecords.add(record);
+        flightRecords.add(record2);
+        when(flightRepository.findAll()).thenReturn(flightRecords);
+
+        List<Flight> flights = subject.searchFlights(date, "CA", arrivalLocation);
+
+        Assertions.assertNotNull(flights, "The FLight list is returned");
+        Assertions.assertEquals(0, flights.size(), "The are no available flights");
+
+    }
+
+
+
+
+    @Test
+    void searchFlights_isUnSuccessful_DepartureLocationDoesNotMatch() {
+        LocalDate date = LocalDate.parse("2003-07-01");
+        String departureLocation = "FL";
+        String arrivalLocation = "MARS";
+
+        FlightRecord record = new FlightRecord();
+        record.setId(randomUUID().toString());
+        record.setFlightName("SPX2000");
+        record.setDate(String.valueOf(date));
+        record.setDepartureLocation(departureLocation);
+        record.setArrivalLocation(arrivalLocation);
+        record.setTotalSeatCapacity(10);
+        record.setTicketBasePrice(100000.000);
+        record.setReservationClosed(false);
+
+        FlightRecord record2 = new FlightRecord();
+        record2.setId(randomUUID().toString());
+        record2.setFlightName("SPX2001");
+        record2.setDate(String.valueOf(date));
+        record2.setDepartureLocation(departureLocation);
+        record2.setArrivalLocation(arrivalLocation);
+        record2.setTotalSeatCapacity(10);
+        record2.setTicketBasePrice(100000.000);
+        record2.setReservationClosed(false);
+
+        List<FlightRecord> flightRecords = new ArrayList<>();
+        flightRecords.add(record);
+        flightRecords.add(record2);
+        when(flightRepository.findAll()).thenReturn(flightRecords);
+
+        List<Flight> flights = subject.searchFlights(date, "CA", arrivalLocation);
+
+        Assertions.assertNotNull(flights, "The FLight list is returned");
+        Assertions.assertEquals(0, flights.size(), "The are no available flights");
+
+    }
 
 
 }
