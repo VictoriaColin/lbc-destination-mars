@@ -2,6 +2,7 @@ package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
+import com.kenzie.appserver.service.exceptions.ItemNotFoundException;
 import com.kenzie.appserver.service.model.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ import java.util.*;
 public class FlightSearchService {
     @Autowired
     FlightRepository flightRepository;
+
+    public FlightSearchService(FlightRepository flightRepository) {
+        this.flightRepository = flightRepository;
+    }
 
     public List<Flight> searchFlights(LocalDate date, String departureLocation, String arrivalLocation) {
         //        List<Flight> flights = new ArrayList<>();
@@ -44,6 +49,5 @@ public class FlightSearchService {
         }
         return flights;
     }
-
 
 }

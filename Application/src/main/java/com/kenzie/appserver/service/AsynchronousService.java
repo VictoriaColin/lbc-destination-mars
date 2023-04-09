@@ -1,6 +1,7 @@
 package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.service.model.ReservedTicket;
+import com.kenzie.ata.ExcludeFromJacocoGeneratedReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +24,7 @@ public class AsynchronousService {
     private ApplicationContext applicationContext;
 
     // running an asynchronous task to CloseReservationTask
+    @ExcludeFromJacocoGeneratedReport
     public void executeAsynchronously() {
         //System.out.println("***start***");
         ReservedTicketService reservedTicketService = applicationContext.getBean(ReservedTicketService.class);

@@ -1,6 +1,7 @@
 package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.service.model.ReservedTicket;
+import com.kenzie.ata.ExcludeFromJacocoGeneratedReport;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -31,6 +32,8 @@ public class CloseReservationTask implements Runnable{
     // pass the reserved ticket to reservedTicketService to update the reserved ticket
     // Step 6.2: FALSE - If the ticket has been purchased || is less than the duration
     // add back to the reservedTicketQueue
+
+    @ExcludeFromJacocoGeneratedReport
     @Override
     public void run() {
         // step 1: Deque the ticket from the top /head of the queue

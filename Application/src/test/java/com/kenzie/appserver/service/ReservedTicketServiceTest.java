@@ -130,7 +130,6 @@ public class ReservedTicketServiceTest {
         Integer totalSeatCapacity = 10;
         Double ticketBasePrice = 0.0;
 
-
         Flight flight = new Flight(flightId, flightName, date, departureLocation, arrivalLocation, totalSeatCapacity, ticketBasePrice, reservationClosed);
         when(flightService.findByFlightId(flightId)).thenReturn(flight);
 
@@ -138,19 +137,8 @@ public class ReservedTicketServiceTest {
         ReservedTicket result = reservedTicketService.reservedTicket(reservedTicket);
 
         Assertions.assertTrue(reservedTicketsQueue.contains(result));
-
-
     }
 
-
-
-
-
-
-
-
-
-    
 
     /**
      * ------------------------------------------------------------------------

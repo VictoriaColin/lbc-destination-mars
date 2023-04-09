@@ -124,18 +124,19 @@ class TicketPurchase extends BaseClass {
 
         let options = "";
         for (const flight of flights) {
-            options += `<option value="${flight.id}">${flight.name}</option>`
+            options += `<option value="${flight.id}">${flight.arrivalLocation}</option>`
         }
         flightSelect.innerHTML = options;
     }
 
     async renderReservationPage() {
         const flight = this.dataStore.get("selectedFlight");
+        console.log(flight);
 
         document.getElementById("reserve-ticket-info").innerHTML = `
-            <h3>${flight.name}</h3>
+            <h3>${flight.arrivalLocation}</h3>
             <div>Date: ${flight.date}</div>
-            <div>Asking Price: ${this.formatCurrency(flight.ticketBasePrice)}</div>
+            <div>Asking Price: 100,000</div>
             <div>Would you like to reserve a ticket to purchase?</div>
         `;
     }
@@ -145,10 +146,10 @@ class TicketPurchase extends BaseClass {
         const ticketReservation = this.dataStore.get("ticketReservation");
         document.getElementById("purchase-price").min = flight.ticketBasePrice;
         document.getElementById("purchase-ticket-info").innerHTML = `
-            <div>You have reserved a ticket to <strong>${flight.name}</strong>!</div>
+            <div>You have reserved a ticket to <strong>${flight.arrivalLocation}</strong>!</div>
             <div>Your reservation number is ${ticketReservation.ticketId}</div>
             <div>You have <strong>5 minutes</strong> to purchase the ticket before your reservation is released.</div>
-            <div>The minimum ticket price is ${this.formatCurrency(flight.ticketBasePrice)}</div>
+            <div>The minimum ticket price is 100,000</div>
         `;
     }
 
@@ -157,7 +158,7 @@ class TicketPurchase extends BaseClass {
         const ticketReceipt = this.dataStore.get("ticketReceipt");
         document.getElementById("done-info").innerHTML = `
             <div>Thank you for your purchase!</div>
-            <div>You have purchased one ticket to see <strong>${flight.name}</strong> for <strong>${this.formatCurrency(ticketReceipt.pricePaid)}</strong></div>
+            <div>You have purchased one ticket to see <strong>${flight.arrivalLocation}</strong> for <strong>100000</strong></div>
             <div>Your confirmation number is ${ticketReceipt.ticketId}</div>
         `;
     }
@@ -172,6 +173,7 @@ class TicketPurchase extends BaseClass {
     const optionDate = document.getElementById("date").value;
     // get request here
         const flights =await this.client.getFlights(optionFrom,optionTo,optionDate,this.errorHandler);//this.dataStore.get("flights");
+        // Choose a flight
         console.log(flights);
         if(flights){
         for(const flight of flights){
@@ -186,35 +188,43 @@ class TicketPurchase extends BaseClass {
         event.preventDefault();
         console.log("onSelectFlight");
         let flightId = document.getElementById("choose-flight-input").value;
+        // This is flightId from step 1:Pick a Flight
         console.log(flightId);
 
         const optionFrom = document.getElementById("flying-from").value;
         const optionTo = document.getElementById("flying-to").value;
         const optionDate = document.getElementById("date").value;
 
-        // Get the object of the selected concert so we can store it.
+        // Get the object of the selected flight so we can store it.
         const flights =await this.client.getFlights(optionFrom,optionTo,optionDate,this.errorHandler);//this.dataStore.get("flights");
-        //console.log(flights);
+        console.log(flights);
         if(flights){
+        console.log("here");
         let selectedFlight = null;
         for (const flight of flights) {
-            if (flight.id === flightId) {
+        console.log(flight);
+            if (flight.flightId === flightId) {
                 selectedFlight = flight;
-                console.log(selectedFlight);
+                this.dataStore.set("selectedFlight", selectedFlight);
+                this.dataStore.set("state", this.RESERVE_TICKET);
+                console.log(selectedFlight); // flightId
+
             }
         }
-        if (selectedFlight) {
-            const selectedFlight =
-            this.dataStore.set("selectedFlight", selectedFlight);
-            this.dataStore.set("state", this.RESERVE_TICKET)
-        }
+//        if (selectedFlight) {
+//            this.dataStore.set("selectedFlight", selectedFlight);
+//            this.dataStore.set("state", this.RESERVE_TICKET)
+//        }
         }
     }
 
     async onReserveTicket() {
 
         const flight = this.dataStore.get("selectedFlight");
-        const ticketReservation = await this.client.reserveTicket(flight.id, this.errorHandler);
+        // ERROR: not able to get the selected flight from datastore
+        console.log(flight);
+        console.log(flight.flightId);
+        const ticketReservation = await this.client.reserveTicket(flight.flightId, this.errorHandler);//flight.id
 
         if (ticketReservation && ticketReservation.ticketId) {
             this.dataStore.set("ticketReservation", ticketReservation);
@@ -229,7 +239,9 @@ class TicketPurchase extends BaseClass {
         event.preventDefault();
 
         const ticketReservation = this.dataStore.get("ticketReservation");
+
         const pricePaid = parseInt(document.getElementById("purchase-price").value);
+        console.log(pricePaid);
         const ticketReceipt = await this.client.purchaseTicket(ticketReservation.ticketId, pricePaid, this.errorHandler);
 
         if (ticketReceipt && ticketReceipt.ticketId) {
