@@ -65,6 +65,11 @@ module.exports = {
           inject: false
         }),
     new HtmlWebpackPlugin({
+              template: './src/cancel_conf.html',
+              filename: 'cancel_conf.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
               template: './src/checkout.html',
               filename: 'checkout.html',
               inject: false
@@ -94,6 +99,11 @@ module.exports = {
               filename: 'update.html',
               inject: false
             }),
+    new HtmlWebpackPlugin({
+                  template: './src/update_conf.html',
+                  filename: 'update_conf.html',
+                  inject: false
+                }),
     new HtmlWebpackPlugin({
               template: './src/flightAdmin.html',
               filename: 'flightAdmin.html',

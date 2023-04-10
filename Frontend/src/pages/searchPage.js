@@ -1,11 +1,11 @@
 import BaseClass from '../util/baseClass';
 import DataStore from '../util/DataStore';
-import ConcertClient from "../api/searchClient";
+import SearchClient from "../api/searchClient";
 
 /**
  * Logic needed for the search flights page of the website.
  */
-class SearchAdmin extends BaseClass {
+class SearchPage extends BaseClass {
     constructor() {
         super();
         this.bindClassMethods(['onSubmit'], this);
@@ -43,11 +43,6 @@ class SearchAdmin extends BaseClass {
         // Prevent the form from refreshing the page
         event.preventDefault();
 
-        // Set the loading flag
-        let createButton = document.getElementById('create-concert');
-        createButton.innerText = 'Loading...';
-        createButton.disabled = true;
-
         // Get the values from the form inputs
         var getFromLocation = document.getElementById('from_location').selectedOptions[0].value;
         alert(getFromLocation);
@@ -60,12 +55,6 @@ class SearchAdmin extends BaseClass {
         // Save data from form to pass to next page
         const flightInformation = [getFromLocation, getToLocation, date];
         this.dataStore.setItem("searchParam", flightInformation);
-
-//
-//        // Reset the form
-//        document.getElementById("from_location").reset();
-//        document.getElementById("to_location").reset();
-//        document.getElementById("date").reset();
     }
 }
 
@@ -73,8 +62,8 @@ class SearchAdmin extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const searchAdmin = new SearchAdmin();
-    searchAdmin.mount();
+    const searchPage = new SearchPage();
+    searchPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

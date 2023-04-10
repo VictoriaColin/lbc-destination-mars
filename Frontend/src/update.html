@@ -2,17 +2,15 @@
 <html>
 <head>
     <title>Update Flight | Destination: MARS</title>
+    <script type="text/javascript" src="updatePage.js"></script>
     <link rel="stylesheet" href="./css/update_style.css">
 </head>
 <body>
 
 <header>
     <div class="header-box">
-        <div class="logo" style="display: flex">
-            <h1>
-                <a href="index.html"> <img src="images/spacehship2.png" alt="logo"> </a>
-
-                <span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+        <div id="logo">
+            <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
                 <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
             </h1>
         </div>
@@ -25,8 +23,8 @@
 
         <p><br/></p>
         <form>
-            Please enter the ticket number to modify.<br/>
-            <input type="text" name="ticket_number">
+            Please enter the flight number to modify.<br/>
+            <input type="text" name="ticket_number" id="flight-id">
         </form>
     </div>
 
@@ -36,11 +34,9 @@
 
     <div class="buttons">
         <br/>
-        <p id="update_conf"><b>Your flight has been updated.</b></p>
+<!--        <p id="update_conf"><b>Your flight has been updated.</b></p>-->
 
-        <a href="update_conf.html">
             <button class="return" id="submit">Confirm Updates</button>
-        </a>
 
         <a href="customer_dashboard.html">
             <button class="return">Return to Dashboard</button>
