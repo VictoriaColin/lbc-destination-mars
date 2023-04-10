@@ -8,7 +8,7 @@ class PayscreenPage extends BaseClass {
 
        constructor() {
             super();
-            this.bindClassMethods(['onPayment', 'renderPayment', 'onPayment', 'invalidCard', 'validCard'], this);
+            this.bindClassMethods(['onPayment', 'onPayment', 'invalidCard', 'validCard', 'isClosed', 'submit'], this);
             this.dataStore = new DataStore();
        }
 
@@ -27,6 +27,17 @@ class PayscreenPage extends BaseClass {
 
    // Render Methods --------------------------------------------------------------------------------------------------
 
+    async isClosed() {
+        window.alert("The time has expired. Please select a new flight.");
+    }
+
+    async submit() {
+        let cookieDelete = 0;
+        document.cookie = cookieDelete;
+        window.location ='payment_conf.html';
+    }
+
+
     // Throw alert on screen
     async invalidCard() {
     window.alert("Please enter a valid card number");
@@ -35,8 +46,14 @@ class PayscreenPage extends BaseClass {
     // Purchase ticket.
     async validCard() {
         let ticketId = document.cookie;
-        this.client.purchaseTicket(ticketId, 1, this.errorHandler);
-        window.location ='payment_conf.html';
+
+        if(ticketId == 0) {
+            this.isClosed();
+        } else {
+            const purchased = await this.client.purchaseTicket(ticketId, 1, this.errorHandler);
+            this.submit();
+        }
+
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -66,8 +83,10 @@ class PayscreenPage extends BaseClass {
             const validation = result.cardNumberValidationResultCode;
             // If card is valid, store card number and purchase ticket
             if(validation == '2000') {
-                this.dataStore.set("pay_details", result);
+//                this.dataStore.set("pay_details", result);
                 this.validCard();
+            } else {
+                this.invalidCard();
             }
         }
     }
