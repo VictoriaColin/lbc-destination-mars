@@ -54,6 +54,8 @@ export default class UpdateClient extends BaseClass {
             }
         }
 
+
+
         /**
              * Helper method to log the error and run any error functions.
              * @param error The error received from the server.

@@ -30,18 +30,17 @@ class IndexPage extends BaseClass {
         this.dataStore.set("flights", flights);
     }
 
-    async reserveFlight(flightId, errorHandler1) {
-        const reservedFlight = await this.client.reserveTicket(flightId, errorHandler1);
-
-        // Cookies - how to - https://www.w3schools.com/js/js_cookies.asp
-        document.cookie = flightId;
-        let x = document.cookie;
-        console.log(x);
-
-        if(document.cookie!="") {
-            window.location='checkout.html';
-        }
-    }
+//    async reserveFlight(flightId, errorHandler1) {
+//        const reservedFlight = await this.client.reserveTicket(flightId, errorHandler1);
+//
+//        // Cookies - how to - https://www.w3schools.com/js/js_cookies.asp
+//        document.cookie = flightId;
+//        console.log(document.cookie);
+//
+//        if(document.cookie!="") {
+//
+//        }
+//    }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     renderFlights() {
@@ -76,14 +75,16 @@ class IndexPage extends BaseClass {
     async onClick(event) {
         // Prevent button from refreshing the page
         event.preventDefault();
-        console.log("click");
         // Get the value from the flight-id input
         const flightId = document.getElementById('flight-id').value;
-        console.log("click again");
+
+        document.cookie = flightId;
+
         // Reserve the flight
-        this.reserveFlight(flightId, this.errorHandler);
+//        this.reserveFlight(flightId, this.errorHandler);
 
         document.getElementById("flight-id").value = "";
+        window.location='checkout.html';
     }
     /**
      * Method to run when the search flights submit button is pressed.

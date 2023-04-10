@@ -95,6 +95,11 @@ module.exports = {
           inject: false
         }),
     new HtmlWebpackPlugin({
+              template: './src/payment_conf.html',
+              filename: 'payment_conf.html',
+              inject: false
+            }),
+    new HtmlWebpackPlugin({
               template: './src/update.html',
               filename: 'update.html',
               inject: false

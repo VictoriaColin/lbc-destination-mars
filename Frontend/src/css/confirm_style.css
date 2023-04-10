@@ -51,12 +51,12 @@ header{
 
 .confirmation_container{
     height: 200px;
-    width: 1500px;
+    width: 1000px;
     position: fixed;
     top: 50%;
     left: 50%;
     margin-top: -400px;
-    margin-left: -750px;
+    margin-left: -500px;
     padding: 20px;
     background-color: transparent;
     text-align: left;
