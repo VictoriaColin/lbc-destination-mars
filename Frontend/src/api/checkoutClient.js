@@ -13,7 +13,7 @@ export default class CheckoutClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded','getFlight', 'getReservedTicketsForFlight'];
+        const methodsToBind = ['clientLoaded','getFlight', 'reserveTicket'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -45,20 +45,32 @@ export default class CheckoutClient extends BaseClass {
         }
     }
 
-    /**
-     *
-     * @param concertId
-     * @param errorCallback
-     * @returns {Promise<*>}
-     */
-    async getReservedTicketsForFlight(flightId, errorCallback) {
-        try {
-            const response = await this.client.get(`reservedtickets/flight/${flightId}`);
-            return response.data;
-        } catch (error) {
-            this.handleError("getReservedTicketForFlight", error, errorCallback);
+//    /**
+//     *
+//     * @param concertId
+//     * @param errorCallback
+//     * @returns {Promise<*>}
+//     */
+//    async getReservedTicketsForFlight(flightId, errorCallback) {
+//        try {
+//            const response = await this.client.get(`reservedtickets/flight/${flightId}`);
+//            return response.data;
+//        } catch (error) {
+//            this.handleError("getReservedTicketForFlight", error, errorCallback);
+//        }
+//    }
+
+    async reserveTicket(flightId, errorCallback) {
+            try {
+                const response = await this.client.post(`reservedtickets`, {
+                    flightId: flightId,
+                });
+                return response.data;
+            } catch (error) {
+                this.handleError("reserveTicket", error, errorCallback);
+            }
         }
-    }
+
 
     /**
      * Helper method to log the error and run any error functions.

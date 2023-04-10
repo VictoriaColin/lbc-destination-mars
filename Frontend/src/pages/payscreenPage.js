@@ -2,6 +2,7 @@ import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
 import PayscreenClient from "../api/payscreenClient";
 
+console.log(document.cookie);
 class PayscreenPage extends BaseClass {
 
 

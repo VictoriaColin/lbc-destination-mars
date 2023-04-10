@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Cancel Flight | Destination: MARS</title>
+    <script type="text/javascript" src="cancelPage.js"></script>
     <link rel="stylesheet" href="./css/cancel_style.css">
 </head>
 
@@ -10,7 +11,7 @@
 <header>
     <div class="header-box">
         <div class="logo" style="display: flex">
-            <a href="search.html"> <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+            <a href="index.html"> <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
                 <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
             </h1>
             </a>
@@ -22,14 +23,13 @@
     <div class="greeting">
         <h2>Cancel Ticket</h2>
 
-        <p id="cancel_conf"><b></b></p>
-        <p><br/></p>
+        <br/>
         <form>
-            Please enter the ticket number to cancel.<br/>
-            <input type="text" name="ticket_number" id="ticket_num">
+            Please enter the flight number to cancel.<br/>
+            <input type="text" name="ticket_number" id="flight-id">
         </form>
 
-        <button class="return" id="button">Confirm Cancellation</button>
+        <button class="return" id="submit">Confirm Cancellation</button>
 
         <a href="customer_dashboard.html">
             <button class="return">Return to Dashboard</button>
