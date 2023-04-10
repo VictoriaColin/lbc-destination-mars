@@ -1,14 +1,6 @@
 import BaseClass from "../util/baseClass";
 import axios from 'axios'
 
-/**
- * Client to call the MusicPlaylistService.
- *
- * This could be a great place to explore Mixins. Currently the client is being loaded multiple times on each page,
- * which we could avoid using inheritance or Mixins.
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins
- * https://javascript.info/mixins
- */
 export default class IndexClient extends BaseClass {
 
     constructor(props = {}){
@@ -52,6 +44,9 @@ export default class IndexClient extends BaseClass {
         }
     }
 
+    /*
+     * Creates a flight.
+     */
     async createFlight(flightName, date, departureLocation, arrivalLocation, errorCallback) {
         try {
             const response = await this.client.post(`flight`, {
@@ -68,12 +63,7 @@ export default class IndexClient extends BaseClass {
     }
 
     /**
-     * Create a new flightList.
-     * @param name The name of the playlist to create.
-     * @param customerId The user who is the owner of the playlist.
-     * @param tags Metadata tags to associate with a playlist.
-     * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The playlist that has been created.
+     * Reserves a flight
      */
     async reserveTicket(flightId, errorCallback) {
         try {

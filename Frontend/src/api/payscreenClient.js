@@ -5,7 +5,7 @@ export default class PayscreenClient extends BaseClass {
 
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'validateCreditCard', 'makePayment'];
+        const methodsToBind = ['clientLoaded', 'validateCreditCard', 'makePayment', 'purchaseTicket'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -23,16 +23,23 @@ export default class PayscreenClient extends BaseClass {
         }
     }
 
+    /*
+     * Validates credit card
+     */
     async validateCreditCard(ccNumber, errorCallback) {
         try {
         const response = await this.client.post('cardValidator',
             {ccNumber: ccNumber});
             return response.data;
         } catch (error) {
-            this.handleError("cardValidator"), error, errorCallback};
+            this.handleError("cardValidator"), error, errorCallback;
+        }
 
     }
 
+    /*
+     * Submit Payment
+     */
     async makePayment(payment, errorCallback) {
          try {
          console.log(payment)
@@ -43,15 +50,28 @@ export default class PayscreenClient extends BaseClass {
              "cvvNumber": payment.cvvNumber});
              return response.data;
          } catch (error) {
-             this.handleError("cardValidator"), error, errorCallback};
+             this.handleError("cardValidator"), error, errorCallback;
+         }
 
 
     }
 
 
-
-
-
+    /*
+     * Purchases ticket
+     */
+    async purchaseTicket(ticketId, numberOfSeatsReserved, errorCallback) {
+        try{
+            console.log("purchase start");
+            const response = await this.client.post('purchasedtickets', {
+                ticketId: ticketId,
+                numberOfSeatsReserved: numberOfSeatsReserved
+                });
+            return response.data;
+        } catch (error) {
+            this.handleError("purchasedTicket"), error, errorCallback;
+        }
+    }
 
     /**
      * Helper method to log the error and run any error functions.
