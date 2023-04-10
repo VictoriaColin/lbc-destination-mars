@@ -1,10 +1,12 @@
 import BaseClass from '../util/baseClass';
 import DataStore from '../util/DataStore';
-import SearchClient from "../api/searchClient";
+//import SearchClient from "../api/searchClient";
 
 /**
  * Logic needed for the search flights page of the website.
  */
+
+ // Unused page
 class SearchPage extends BaseClass {
     constructor() {
         super();

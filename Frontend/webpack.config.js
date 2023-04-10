@@ -13,14 +13,14 @@ module.exports = {
     cancelPage: path.resolve(__dirname, 'src', 'pages', 'cancelPage.js'),
     cancel_confirmationPage: path.resolve(__dirname, 'src', 'pages', 'cancel_confirmationPage.js'),
     checkoutPage: path.resolve(__dirname, 'src', 'pages', 'checkoutPage.js'),
-    create_accountPage: path.resolve(__dirname, 'src', 'pages', 'create_accountPage.js'),
-    customer_dashboardPage: path.resolve(__dirname, 'src', 'pages', 'customer_dashboardPage.js'),
-    customer_signinPage: path.resolve(__dirname, 'src', 'pages', 'customer_signinPage.js'),
+//    create_accountPage: path.resolve(__dirname, 'src', 'pages', 'create_accountPage.js'),
+//    customer_dashboardPage: path.resolve(__dirname, 'src', 'pages', 'customer_dashboardPage.js'),
+//    customer_signinPage: path.resolve(__dirname, 'src', 'pages', 'customer_signinPage.js'),
     flightsPage: path.resolve(__dirname, 'src', 'pages', 'flightsPage.js'),
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
     payment_confPage: path.resolve(__dirname, 'src', 'pages', 'payment_confPage.js'),
     payscreenPage: path.resolve(__dirname, 'src', 'pages', 'payscreenPage.js'),
-    searchPage: path.resolve(__dirname, 'src', 'pages', 'searchPage.js'),
+//    searchPage: path.resolve(__dirname, 'src', 'pages', 'searchPage.js'),
     updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
     update_changesPage: path.resolve(__dirname, 'src', 'pages', 'update_changesPage.js'),
     update_confPage: path.resolve(__dirname, 'src', 'pages', 'update_confPage.js'),
@@ -74,11 +74,11 @@ module.exports = {
               filename: 'checkout.html',
               inject: false
             }),
-    new HtmlWebpackPlugin({
-              template: './src/create_account.html',
-              filename: 'create_account.html',
-              inject: false
-            }),
+//    new HtmlWebpackPlugin({
+//              template: './src/create_account.html',
+//              filename: 'create_account.html',
+//              inject: false
+//            }),
     new HtmlWebpackPlugin({
               template: './src/customer_dashboard.html',
               filename: 'customer_dashboard.html',

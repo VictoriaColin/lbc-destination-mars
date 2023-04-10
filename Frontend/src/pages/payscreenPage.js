@@ -8,7 +8,7 @@ class PayscreenPage extends BaseClass {
 
        constructor() {
             super();
-            this.bindClassMethods(['onPayment', 'renderPayment'], this);
+            this.bindClassMethods(['onPayment', 'onPayment', 'invalidCard', 'validCard', 'isClosed', 'submit'], this);
             this.dataStore = new DataStore();
        }
 
@@ -16,61 +16,79 @@ class PayscreenPage extends BaseClass {
        */
        async mount() {
             console.log("mounted")
-            document.querySelector('button').addEventListener('click', this.onPayment);
+            // Register button click
+            document.getElementById('button').addEventListener('click', this.onPayment);
             this.client = new PayscreenClient();
-            localStorage.setItem("Testkey", "testvalue")
-//            console.let(results)
 
             //WHEN anything changes in the datastore, THEN renderPayment runs
+            this.client = new PayscreenClient();
             this.dataStore.addChangeListener(this.renderPayment)
        }
 
-       // Render Methods --------------------------------------------------------------------------------------------------
+   // Render Methods --------------------------------------------------------------------------------------------------
 
-       async renderPayment() {
-       let resultArea = document.getElementById("results");
+    async isClosed() {
+        window.alert("The time has expired. Please select a new flight.");
+    }
 
-        const payment = this.dataStore.get("pay_details");
-        console.log(payment)
+    async submit() {
+        let cookieDelete = 0;
+        document.cookie = cookieDelete;
+        window.location ='payment_conf.html';
+    }
 
-        if (payment) {
 
-            resultArea.innerHTML = `
-                Success
-                <a href="payment_conf.html"> To Next Page</a>
-            `
+    // Throw alert on screen
+    async invalidCard() {
+    window.alert("Please enter a valid card number");
+    }
 
+    // Purchase ticket.
+    async validCard() {
+        let ticketId = document.cookie;
+
+        if(ticketId == 0) {
+            this.isClosed();
         } else {
-            resultArea.innerHTML = "Please enter all fields";
+            const purchased = await this.client.purchaseTicket(ticketId, 1, this.errorHandler);
+            this.submit();
         }
+
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
+    /*
+     * Method to run when Pay Now button is clicked. Validates card, and begins purchase process
+     */
     async onPayment(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
         console.log("onPayment")
 
-         const name = document.querySelector('#cust_name').value;
-         const cardNumber = document.querySelector('#cc').value;
-         const expDate = document.querySelector('#exp').value;
-         const cvv = document.querySelector('#cvv').value;
+        // Get values from input boxes
+         const name = document.getElementById('cust_name').value;
+         const cardNumber = document.getElementById('cc').value;
+         const expDate = document.getElementById('exp').value;
+         const cvv = document.getElementById('cvv').value;
 
+        // Put values into an array
          const payment = { name, cardNumber, expDate, cvv };
 
-         this.dataStore.set("pay_details", null);
-
-         const result = await this.client.makePayment(payment, this.errorHandler);
-
-         this.dataStore.set("pay_details", result);
-
-         if (result) {
-             this.showMessage(`Payment Successful!`);
-             this.renderPayment;
-         } else {
-             this.errorHandler("Error making payment!  Try again...");
-         }
+        // Checks if card number is present, if not, throw alert. Is is present, check if valid
+        if(cardNumber == ""){
+            this.invalidCard();
+        } else {
+            const result = await this.client.makePayment(payment, this.errorHandler);
+            const validation = result.cardNumberValidationResultCode;
+            // If card is valid, store card number and purchase ticket
+            if(validation == '2000') {
+//                this.dataStore.set("pay_details", result);
+                this.validCard();
+            } else {
+                this.invalidCard();
+            }
+        }
     }
 }
 /**
@@ -83,64 +101,3 @@ const main = async () => {
     payscreenPage.mount();
 };
 window.addEventListener('DOMContentLoaded', main);
-
-//
-//    constructor() {
-//    super();
-//    this.bindClassMethods(['renderPayscreen', 'onPayNow',], this);
-//    this.dataStore = new DataStore;
-//    }
-//
-//    //mount() method - This method is used to initialize the page after it has loaded.
-//    async mount() {
-//        document.getElementById('pay_details').addEventListener('click', this.onPayNow);
-//        this.client = new payscreenClient();
-//        this.dataStore.addChangeListner(this.renderPayscreen);
-//
-//
-//
-//    }
-//
-//
-//    //Render Methods-----------------
-//    // - These methods are used to render some content to the page.
-//    //  for consistency, keep all render methods starting with 'render'
-//
-//    async renderPayscreen() {
-//        const custName = document.getElementsByName("cust_name")
-//
-//    }
-//
-//    //Event Handler Methods ----------
-//    // - These methods are intended to perform actions
-//    //    whenever an event happens on the page.
-//    //  for consistency, keep all render methods starting with 'on'
-//    // followed by a name describing the event happening
-//
-//    async onPayNow() {
-//
-//    //Get the values from the div classes inside div class "pay_details"
-//    const custName = document.getElementById('cust_name').value;
-//    const ccNum = document.getElementById('cc').value;
-//    const ccExp = document.getElementById('exp').value;
-//    const ccCvv = document.getElementById('cvv').value;
-//
-//    //Do I need to create a purchased ticket here?  How do I link the two?
-//    //use an await command from the last page, that waits for valid
-//    //cc return?
-//
-//
-//    }
-//
-///**
-// * Main method to run when the page contents have loaded.
-// */
-// const main = async () => {
-//    const payscreenPage = new PayscreenPage();
-//    payscreenPage.mount();
-// };
-//
-// window.addEventListener('DOMContentLoaded', main);
-
-
-
