@@ -155,6 +155,7 @@ public class ReservedTicketServiceTest {
         //THEN
 
         verify(reservedTicketRepository).findAll();
+        Assertions.assertTrue(reservedTicketService.findAllUnclosedReservationTickets().size() == 1);
     }
 
 
