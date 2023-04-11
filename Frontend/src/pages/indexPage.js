@@ -8,7 +8,7 @@ import IndexClient from "../api/indexClient";
 class IndexPage extends BaseClass {
     constructor() {
         super();
-        this.bindClassMethods(['onSubmit', 'onClick', 'renderFlights'], this);
+        this.bindClassMethods(['onSubmit', 'onClick', 'renderFlights', 'onLoad', 'checkEmailExists', 'reserveFlight'], this);
         this.dataStore = new DataStore();
     }
 
@@ -22,6 +22,7 @@ class IndexPage extends BaseClass {
 
         this.client = new IndexClient();
         this.dataStore.addChangeListener(this.renderFlights);
+        this.onLoad();
     }
 
     async fetchFlights(departureLocation,arrivalLocation,date,errorHandler1) {
@@ -30,17 +31,34 @@ class IndexPage extends BaseClass {
         this.dataStore.set("flights", flights);
     }
 
-//    async reserveFlight(flightId, errorHandler1) {
-//        const reservedFlight = await this.client.reserveTicket(flightId, errorHandler1);
-//
-//        // Cookies - how to - https://www.w3schools.com/js/js_cookies.asp
-//        document.cookie = flightId;
-//        console.log(document.cookie);
-//
-//        if(document.cookie!="") {
-//
-//        }
-//    }
+    // Local Storage Methods --------------------------------------------------------------------------------------------------
+        /*
+         * Method checks to see if a user is signed in
+         */
+        async checkEmailExists() {
+            let email = localStorage.getItem("email");
+            console.log(email);
+            if(email == null || email == "") {
+            this.signIn();
+            }
+        }
+
+        async signIn() {
+            if(window.confirm("Please create an account or sign in.")) {
+                window.location = 'create_account.html';
+            } else {
+                window.alert("Please create an account or sign in to continue.");
+                this.checkEmailExists();
+            }
+        }
+
+    async reserveFlight(flightId1, errorHandler1) {
+        const reservedFlight = await this.client.reserveTicket(flightId1, errorHandler1);
+
+        const ticketId = reservedFlight.ticketId;
+        localStorage.setItem("reservedTicketId", ticketId);
+        window.location='checkout.html';
+    }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     renderFlights() {
@@ -68,9 +86,10 @@ class IndexPage extends BaseClass {
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
-//    onRefresh() {
-//        this.fetchFlights();
-//    }
+    async onLoad() {
+        this.checkEmailExists();
+    }
+
 
     async onClick(event) {
         // Prevent button from refreshing the page
@@ -78,13 +97,8 @@ class IndexPage extends BaseClass {
         // Get the value from the flight-id input
         const flightId = document.getElementById('flight-id').value;
 
-        document.cookie = flightId;
-
-        // Reserve the flight
-//        this.reserveFlight(flightId, this.errorHandler);
-
-        document.getElementById("flight-id").value = "";
-        window.location='checkout.html';
+        localStorage.setItem("flightId", flightId);
+        this.reserveFlight(flightId, this.errorHandler);
     }
     /**
      * Method to run when the search flights submit button is pressed.

@@ -47,6 +47,11 @@ header{
     padding: 0 20px;
 }
 
+#logout{
+    border: none;
+    background-color: transparent;
+}
+
 /*header end*/
 
 /*Greeting*/

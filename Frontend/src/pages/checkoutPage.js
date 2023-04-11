@@ -33,32 +33,16 @@ class CheckoutPage extends BaseClass {
      * flightId was selected on search screen.
      */
     async fetchFlight() {
-        // Retrieve cookie.
-        let flightInfo = document.cookie;
+        // Retrieve flightId.
+        let flightInfo = localStorage.getItem("flightId");
 
-        // Print cookie (flightId) to console.
+        // Print flightId (flightId) to console.
         console.log(flightInfo);
 
         // Retrieve the flight by flightId
         const flight = await this.client.getFlight(flightInfo, this.errorHandler);
         this.dataStore.set("flights", flight);
     }
-
-    async reserveFlight(flightId1, errorHandler1) {
-                const reservedFlight = await this.client.reserveTicket(flightId1, errorHandler1);
-
-                // Cookies - how to - https://www.w3schools.com/js/js_cookies.asp
-                console.log("before cookie");
-                document.cookie = reservedFlight.ticketId;
-                console.log(reservedFlight);
-
-                console.log("after cookie");
-                console.log(document.cookie);
-
-                if(document.cookie!="") {
-                    window.location='payscreen.html';
-                }
-            }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     renderFlights() {
@@ -105,12 +89,9 @@ class CheckoutPage extends BaseClass {
     }
 
     async onSubmit(event) {
-        event.preventDefault();
-
-        console.log(document.cookie);
-        let flightId = document.cookie;
-
-        this.reserveFlight(flightId, this.errorHandler);
+        const price = document.getElementById("price").innerHTML;
+        localStorage.setItem("price", price);
+        window.location='payscreen.html';
     }
 
 }

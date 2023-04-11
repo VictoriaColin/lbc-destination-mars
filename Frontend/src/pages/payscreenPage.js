@@ -2,7 +2,6 @@ import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
 import PayscreenClient from "../api/payscreenClient";
 
-console.log(document.cookie);
 class PayscreenPage extends BaseClass {
 
 
@@ -29,28 +28,29 @@ class PayscreenPage extends BaseClass {
 
     async isClosed() {
         window.alert("The time has expired. Please select a new flight.");
+        window.location ='index.html';
     }
 
     async submit() {
-        let cookieDelete = 0;
-        document.cookie = cookieDelete;
+        localStorage.removeItem("reservedTicketId");
         window.location ='payment_conf.html';
     }
 
 
     // Throw alert on screen
     async invalidCard() {
-    window.alert("Please enter a valid card number");
+        window.alert("Please enter a valid card number");
     }
 
     // Purchase ticket.
     async validCard() {
-        let ticketId = document.cookie;
+        let ticketId = localStorage.getItem("reservedTicketId");
 
-        if(ticketId == 0) {
+        if(ticketId == null) {
             this.isClosed();
         } else {
             const purchased = await this.client.purchaseTicket(ticketId, 1, this.errorHandler);
+            localStorage.setItem("purchasedTicketId", purchased.ticketId);
             this.submit();
         }
 

@@ -5,7 +5,7 @@ export default class CheckoutClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded','getFlight', 'reserveTicket'];
+        const methodsToBind = ['clientLoaded','getFlight'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -36,20 +36,6 @@ export default class CheckoutClient extends BaseClass {
             this.handleError("getFlight", error, errorCallback)
         }
     }
-
-    /*
-     * Reserved ticket.
-     */
-    async reserveTicket(flightId, errorCallback) {
-            try {
-                const response = await this.client.post(`reservedtickets`, {
-                    flightId: flightId,
-                });
-                return response.data;
-            } catch (error) {
-                this.handleError("reserveTicket", error, errorCallback);
-            }
-        }
 
 
     /**

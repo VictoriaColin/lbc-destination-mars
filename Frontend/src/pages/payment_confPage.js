@@ -24,7 +24,9 @@ class Payment_ConfPage extends BaseClass {
         // https://www.educative.io/answers/how-to-create-a-random-uuid-in-javascript
         const uuid = crypto.randomUUID();
 
+        let price = localStorage.getItem("price");
         this.dataStore.set("purchased", uuid);
+        this.dataStore.set("price", price);
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -36,13 +38,22 @@ class Payment_ConfPage extends BaseClass {
                 <div class ="card">
                     <br/>
                     <div><b>Confirmation#:</b> ${purchased}</div>
-                    <br/>
                 </div>`;
         }
 
+        const price = this.dataStore.get("price");
+                let priceHtml = "";
+                if(price) {
+                    priceHtml += `
+                        <div class ="card2">
+                            <br/>
+                            <div><b>Total:</b> ${price}</div>
+                        </div>`;
+                }
+
         console.log(purchased);
 
-        document.getElementById("results").innerHTML = purchaseHtml;
+        document.getElementById("results").innerHTML = purchaseHtml + priceHtml;
     }
 
 }
