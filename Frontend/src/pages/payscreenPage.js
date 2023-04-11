@@ -28,6 +28,7 @@ class PayscreenPage extends BaseClass {
 
     async isClosed() {
         window.alert("The time has expired. Please select a new flight.");
+        window.location ='index.html';
     }
 
     async submit() {

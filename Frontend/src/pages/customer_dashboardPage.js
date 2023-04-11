@@ -27,10 +27,7 @@ class Customer_DashboardPage extends BaseClass {
         // Prevent button from refreshing the page
         event.preventDefault();
         // Remove all stored items for previous customer
-        localStorage.removeItem("email");
-        localStorage.removeItem("flightId");
-        localStorage.removeItem("purchasedTicketId");
-        localStorage.removeItem("reservedTicketId");
+        localStorage.clear();
         window.location='index.html';
     }
 }
