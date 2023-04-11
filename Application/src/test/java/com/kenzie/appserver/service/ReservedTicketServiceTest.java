@@ -114,29 +114,47 @@ public class ReservedTicketServiceTest {
      * ------------------------------------------------------------------------
      **/
     @Test
-    void reserve_ticket() {
+    void findAllUnclosedReservationTickets_valid() {
+        //Given
         String flightId = randomUUID().toString();
-        String flightName = "name";
-        String ticketId = randomUUID().toString();
-        String departureLocation = "FL";
-        String arrivalLocation = "MARS";
-        String dateOfReservation = LocalDateTime.now().toString();
-        Boolean reservationClosed = false;
-        // why dateOfReservationClosed is null instead of LocalDateTime.now().toString()
-        String dateOfReservationClosed = null;
-        Integer numberOfSeatsReserved = 2;
-        Boolean purchasedTicket = true;
-        String date = LocalDateTime.now().toString();
-        Integer totalSeatCapacity = 10;
-        Double ticketBasePrice = 0.0;
 
-        Flight flight = new Flight(flightId, flightName, date, departureLocation, arrivalLocation, totalSeatCapacity, ticketBasePrice, reservationClosed);
-        when(flightService.findByFlightId(flightId)).thenReturn(flight);
+        ReservedTicketRecord openReservation = new ReservedTicketRecord();
+        openReservation.setFlightId(randomUUID().toString());
+        openReservation.setFlightName(flightId);
+        openReservation.setTicketId(randomUUID().toString());
+        openReservation.setDepartureLocation("FL");
+        openReservation.setArrivalLocation("MARS");
+        openReservation.setDateOfReservation("openReservationDate");
+        openReservation.setReservationClosed(false);
+        openReservation.setDateOfReservationClosed("dateClosed");
+        openReservation.setNumberOfSeatsReserved(1);
+        openReservation.setPurchasedTicket(true);
 
-        ReservedTicket reservedTicket = new ReservedTicket(flightId, flightName, ticketId, departureLocation, arrivalLocation, dateOfReservation, reservationClosed, dateOfReservationClosed, numberOfSeatsReserved, purchasedTicket);
-        ReservedTicket result = reservedTicketService.reservedTicket(reservedTicket);
+        ReservedTicketRecord closedReservation = new ReservedTicketRecord();
+        openReservation.setFlightId(randomUUID().toString());
+        openReservation.setFlightName(flightId);
+        openReservation.setTicketId(randomUUID().toString());
+        openReservation.setDepartureLocation("FL");
+        openReservation.setArrivalLocation("MARS");
+        openReservation.setDateOfReservation("closedReservationDate");
+        openReservation.setReservationClosed(true);
+        openReservation.setDateOfReservationClosed("dateClosed");
+        openReservation.setNumberOfSeatsReserved(1);
+        openReservation.setPurchasedTicket(false);
 
-        Assertions.assertTrue(reservedTicketsQueue.contains(result));
+        List<ReservedTicketRecord> records = new ArrayList<>();
+        records.add(openReservation);
+        records.add(closedReservation);
+
+        when(reservedTicketRepository.findAll()).thenReturn(records);
+
+        //WHEN
+
+        reservedTicketService.findAllUnclosedReservationTickets();
+
+        //THEN
+
+        verify(reservedTicketRepository).findAll();
     }
 
 
