@@ -1,40 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="examplePage.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <title>Destination: MARS</title>
+    <script type="text/javascript" src="indexPage.js"></script>
+    <link rel="stylesheet" href="./css/index_style.css">
 </head>
-<body class="background">
-    <header class="header" id="header">
-        <div class="site-title">
-            <a class="header_home" href="index.html">Example App</a>
+<body>
+
+
+<header>
+    <div class="header-box">
+        <div class="header" style="display: flex">
+
+            <div id="logo">
+                <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+                    <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
+                </h1>
+            </div>
         </div>
-    </header>
-    <div class="card">
-        <h2>Create Example</h2>
-        <form class="card-content" id="create-form">
-            <p class="form-field">
-                <label>Name</label>
-                <input type="text" required class="validated-field" id="create-name-field">
-            </p>
-            <button type="submit">Create</button>
-        </form>
+        <!--Nav links to customer account dashboard-->
+        <div class="navlink">
+            <ul id="loginlink">
+                <li> <a href="customer_dashboard.html"> My account</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="card">
-        <h2>Get By ID</h2>
-        <form class="card-content" id="get-by-id-form">
-            <p class="form-field">
-                <label>ID</label>
-                <input type="text" required class="validated-field" id="id-field">
-            </p>
-            <button type="submit">Get</button>
-        </form>
+</header>
+
+
+
+<div class="search">
+    <select required name="from" id="from_location">
+        <option value="none" selected disabled hidden>Leaving from</option>
+        <option value="FL"> Cape Canaveral, Fl </option>
+        <option value="CA"> Vandenberg, Ca </option>
+    </select>
+
+    <select required name="to" id="to_location">
+        <option value="none" selected disabled hidden>Going to</option>
+        <option value="Nili Fossae"> Nili Fossae </option>
+        <option value="Holden Crater"> Holden Crater </option>
+        <option value="Jezero Crater"> Jezero Crater </option>
+        <option value="Mawrth Vallis"> Marwth Vallis </option>
+    </select>
+    <input type="date" id="depart_date" name="depart" class="depart_date" required/>
+    <!--<button type="submit" class="button"> Find Flights </button>-->
+    <div class="button_area">
+        <input type="submit" class="button" id="submit-button"/>
     </div>
-    <div class="card" id="result">
-        <h2>Result:</h2>
-        <p id="result-info"></p>
+</div>
+
+<div class="disclaimer">
+    <p id="disclaimer">*All flights are one way</p>
+</div>
+
+<div class="flights_container">
+    <div class="greeting">
+        <h3>Showing flights</h3>
     </div>
 
+
+    <!--to select individual flights, look up how to do with js-->
+    <div class="flights">
+        <p class="results" id="flights"></p>
+    </div>
+
+
+    <div class="flight_submission">
+        <div class="instr">
+            <label id="instr">Enter desired flight id here.<br/></label>
+            <input type="text" id="flight-id"/>
+
+                <button id="reserve-button"> Reserve Ticket</button>
+
+        </div>
+
+    </div>
+</div>
+
+
+</main>
 </body>
 </html>

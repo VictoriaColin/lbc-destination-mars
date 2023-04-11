@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout | Destination: MARS</title>
+    <script type="text/javascript" src="checkoutPage.js"></script>
+    <link rel="stylesheet" href="./css/checkout_style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-box">
+        <div class="logo" style="display: flex">
+            <a href="index.html"> <h1><span style="font-family:Georgia, 'Times New Roman', Times, serif;">Destination:</span>
+                <span style="color: #990000; background-color: transparent; font-family: 'Courier New', Courier, monospace;">MARS</span>
+            </h1> </a>
+        </div>
+
+        <!--Nav links to customer account dashboard-->
+        <div class="navlink">
+            <ul id="loginlink">
+                <li> <a href="customer_dashboard.html"> My account</a></li>
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+<div class="checkout_container">
+    <div class="flight_info">
+        <h3>Trip Summary</h3>
+        <!--Can try to create a timer here using js-->
+        <p>Your flight is reserved for the next <b>5</b> minutes. </p> <br/>
+        <p id="reserved-flight"></p>
+    </div>
+
+
+    <div class="passenger_seats">
+        <h4 class="instructions">Please select your seat.</h4>
+
+        <div class="seats_column1">
+
+            <ol class="cabin">
+
+                <li class="column 1">
+                    <ol class="seats" type="A">
+                        <li class="seat">
+                            <input type="radio" id="11" name="seat"/>
+                            <label for="11">11</label>
+                        </li>
+                        <li class="seat">
+                            <input type="radio" id="21" name="seat"/>
+                            <label for="21">21</label>
+                        </li>
+                        <li class="seat">
+                            <input type="radio" id="31" name="seat"/>
+                            <label for="31">31</label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+
+        </div>
+
+        <div class="seats_column2">
+
+            <li class="column 2">
+                <ol class="seats" type="A">
+                    <li class="seat">
+                        <input type="radio" id="12" name="seat"/>
+                        <label for="12">12</label>
+                    </li>
+                    <li class="seat">
+                        <input type="radio" id="22" name="seat"/>
+                        <label for="22">22</label>
+                    </li>
+                    <li class="seat">
+                        <input type="radio" id="32" name="seat"/>
+                        <label for="32">32</label>
+                    </li>
+                </ol>
+            </li>
+        </div>
+
+        <div class="seats_column3">
+
+            <li class="column 3">
+                <ol class="seats" type="A">
+                    <li class="seat">
+                        <input type="radio" id="13" name="seat"/>
+                        <label for="12">12</label>
+                    </li>
+                    <li class="seat">
+                        <input type="radio" id="23" name="seat"/>
+                        <label for="23">23</label>
+                    </li>
+                    <li class="seat">
+                        <input type="radio" id="33" name="seat"/>
+                        <label for="33">33</label>
+                    </li>
+                </ol>
+            </li>
+        </div>
+    </div>
+
+    <div class="button_placement">
+        <p class="total">Total</p>
+        <p id="price">$100,000.00</p>
+        <br/>
+        <br/>
+            <button type="submit" id="continue">Continue to checkout</button>
+
+
+    </div>
+
+
+    <div class="upgrades">
+        <div class="info">
+            <h4>Would you like to upgrade?</h4>
+            <p>*All flights come with default options at no extra charge.</p>
+            <p>**Max 2 bags per traveler.</p>
+        </div>
+
+        <div class="suit_options">
+            <p>Please select a suit.</p>
+            <select required name="suit" id="suit_options">
+                <option value=0>Economy suit</option>
+                <option value=20000>Deluxe suit</option>
+                <option value=50000>Premium suit</option>
+            </select>
+        </div>
+
+        <div class="baggage_options">
+            <p>How many baggage items?</p>
+            <select required name="baggage" id="baggage_options" class="baggage_options">
+                <option value=0>1</option>
+                <option value=10000>2</option>
+            </select>
+        </div>
+
+        <div class="food_options">
+            <p>Please select a food package.</p>
+            <select required name="food" id="food_options" class="food_options">
+                <option value=0>Gold</option>
+                <option value=30000>Diamond</option>
+                <option value=50000>Platinum</option>
+            </select>
+        </div>
+
+        <ul class="suits">
+            <li>All suits come with an oxygen tank and heat retention gear.</li>
+            <li>Deluxe suits come with an additional life support system.</li>
+            <li>Premium suits include additional life support and temperature regulatory systems.</li>
+        </ul>
+
+        <ul class="foods">
+            <li>Gold includes nutrient paste, nuts, coffee, and fruit punch.</li>
+            <li>Diamond includes the above, chicken, beef, and brownies.</li>
+            <li>Platinum includes the above, fruits, candy, and freeze-dried ice cream.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="ticketPurchase.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="background">
+<header class="header" id="header">
+    <div class="site-title">
+        <a class="header_home" href="index2.html">Destination Mars</a>
+        <a class="header_nav_link button" href="flightAdmin.html">Manage Flight</a>
+    </div>
+</header>
+<p class="about">
+    Welcome to Destination Mars!  Pioneer in outer space tourism.
+</p>
+<div class="card">
+    <h3></h3>
+    <p>description</p>
+    <p>description</p>
+</div>
+<div class="card state active" id="loading">
+    Loading...
+</div>
+<div class="card state" id="no-flights">
+    <h3>There are no flights!</h3>
+    <p>Have tickets to sell?  Go to the <a href="flightAdmin.html">Manage flight</a> page and create a flight.</p>
+</div>
+<div class="card">
+    <h2>Choose a Flight</h2>
+
+    <form class="card-content" id="create-flight-detail-form">
+
+
+        <p class = "form-field">
+            <label>Flying From</label>
+            <input type="text" required class="validated-field" id="flying-from" placeholder="source" autofocus>
+        </p>
+
+        <p class = "form-field">
+            <label>flying To</label>
+            <input type="text" required class="validated-field" id="flying-to" placeholder="destination" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>date</label>
+            <input type="date" required id="date" class="date validated-field">
+        </p>
+
+        <button type="submit" id="find-flight">Submit</button>
+    </form>
+</div>
+<div class="card state" id="choose-flight">
+    <h2 id="flightlist-name">Step One - Pick a flight</h2>
+    <form class="card-content" id="choose-flight-form">
+        <p class="form-field">
+
+            <label>Choose a flight</label>
+
+            <select required class="validated-field" id="choose-flight-input">
+                <option value="">No flights Available</option>
+            </select>
+        </p>
+        <button type="submit">Continue</button>
+    </form>
+</div>
+<div class="card state" id="reserve-tickets">
+    <p id="reserve-ticket-info"></p>
+    <button id="reserve-ticket-button">Reserve a ticket</button>
+</div>
+<div class="card state" id="purchase-tickets">
+    <p id="purchase-ticket-info"></p>
+    <form class="card-content" id="purchase-ticket-form">
+        <p class="form-field">
+            <label>Purchase Price</label>
+            <input  required class="validated-field" id="purchase-price">
+        </p>
+        <button type="submit">Purchase</button>
+    </form>
+</div>
+<div class="card state" id="done">
+    <p id="done-info"></p>
+</div>
+</body>
+</html>

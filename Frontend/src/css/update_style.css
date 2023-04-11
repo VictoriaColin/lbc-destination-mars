@@ -1,0 +1,169 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style: none;
+}
+
+/*header begin*/
+
+img{
+    height: 100px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.logo{
+    display: flex;
+    text-align: center;
+    margin: 0%;
+}
+
+.header-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+header{
+    height: 10vh;
+    line-height: 10vh;
+    padding: 0 20px;
+}
+
+/*header end*/
+
+.confirmation_container{
+    height: 150px;
+    width: 1500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -400px;
+    margin-left: -750px;
+    padding: 20px;
+    background-color: transparent;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: #990000;
+}
+
+.result{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+button{
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border-color: #990000;
+    background-color: transparent;
+    transform: translateY(10px);
+}
+
+input{
+    width: 300px;
+    height: 25px;
+}
+
+.container{
+    height: 400px;
+    width: 1500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -750px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: #990000;
+
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr .5fr;
+
+}
+
+.upgrades{
+    grid-area: 1 / 1;
+}
+
+.buttons{
+    grid-area: 2 / 1;
+}
+
+.upgrades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+
+    .upgrades select {
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .info{
+        grid-area: 1 / 2;
+        text-align: center;
+    }
+    .suit_options{
+        grid-area: 2 / 1;
+        text-align: center;
+    }
+
+    .baggage_options{
+        grid-area: 2 / 2;
+        text-align: center;
+    }
+
+    .food_options{
+        grid-area: 2 / 3;
+        text-align: center;
+    }
+
+    .suits{
+        grid-area: 3 / 1;
+        text-align: left;
+    }
+
+    .foods{
+        grid-area: 3 / 3;
+        text-align: left;
+    }
+
+    button{
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+        border-color: #990000;
+        background-color: transparent;
+        transform: translateY(10px);
+    }
