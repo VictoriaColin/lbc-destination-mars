@@ -3,6 +3,7 @@ package outOfScope;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class FlightSeatingReservationApp{
 
@@ -30,8 +31,10 @@ public class FlightSeatingReservationApp{
     }
 
     public List<Integer> seatReservationFunction() {
+        System.out.println('\n');
         System.out.println("Flight seating chart");
         int[][] seats = populateAndPrintSeatingChart();
+        int seatNumber;
 
 
         List<Integer> reservedSeatList = new ArrayList<>();
@@ -42,7 +45,7 @@ public class FlightSeatingReservationApp{
         while (true) {
             System.out.println("Please enter a seat number: ");
             Scanner scan = new Scanner(System.in);
-            int seatNumber = scan.nextInt();
+            seatNumber = scan.nextInt();
             boolean isReserved = reservedSeatList.contains(seatNumber);
 
             if (isReserved) {
@@ -51,22 +54,22 @@ public class FlightSeatingReservationApp{
                 System.out.println("Seat number is " + seatNumber + " is located in the right window aisle.");
                 reservedSeatList.add(seatNumber);
                 userReservedSeatList.add(seatNumber);
-                //System.out.println(reservedSeatList);
+                updatedSeatingChart(seats, seatNumber);
 
             } else if (seatNumber % 10 == 2) {
                 System.out.println("Seat number is " + seatNumber + " is located in the middle aisle.");
                 reservedSeatList.add(seatNumber);
                 userReservedSeatList.add(seatNumber);
-                //System.out.println(reservedSeatList);
+                updatedSeatingChart(seats, seatNumber);
 
             } else {
                 System.out.println("Seat number is " + seatNumber + " is located in the left window aisle.");
                 reservedSeatList.add(seatNumber);
                 userReservedSeatList.add(seatNumber);
-                //System.out.println(reservedSeatList);
+                updatedSeatingChart(seats, seatNumber);
+
             }
-            System.out.println("do you want to continue? ");
-            updatedSeatingChart(seats, seatNumber);
+            System.out.println("do you want to continue? yes or no");
             String answer = scan.next();
 
             if (answer.equals("no")) {
@@ -74,24 +77,29 @@ public class FlightSeatingReservationApp{
                 break;
             }
         }
-        System.out.println(userReservedSeatList);
+        updatedSeatingChart(seats, seatNumber);
+        System.out.println('\n');
+        System.out.println("Seats currently available: ");
+        printUpdatedArray(seats);
+        System.out.println('\n');
+        System.out.println("Your reserved seat/ seats are: "+userReservedSeatList);
         return userReservedSeatList;
     }
-    private static void updatedSeatingChart(int[][] seats, int seatNumber) {
+
+    private static void updatedSeatingChart(int seats[][], int seatNumber) {
+        char charX = 'X';
         for (int i = 0; i < seats.length; i++) {
             for (int j = 0; j < seats.length; j++) {
-                if (seats[i][j] == seatNumber) {
+                if (seats[i][j] == 0 || seats[i][j] == seatNumber) {
                     seats[i][j] = 0;
-                    System.out.println("Seats currently available: ");
-                    printUpdatedArray(seats);
                 }
             }
-            System.out.println();
+
         }
     }
     private static void printUpdatedArray(int[][] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[0].length; j++) {
+            for (int j = 0; j < array.length; j++) {
                 if (i == 0 || j == 0) {
                     // do something
                 } else {
@@ -101,11 +109,11 @@ public class FlightSeatingReservationApp{
             System.out.println();
         }
     }
-//    public static void main(String[] args) {
-//        // create a 2D array
-//        FlightSeatingReservationApp object = new FlightSeatingReservationApp();
-//        object.seatReservationFunction();
-//    }
+    public static void main(String[] args) {
+        // create a 2D array
+        FlightSeatingReservationApp object = new FlightSeatingReservationApp();
+        object.seatReservationFunction();
+    }
 
 }
 
