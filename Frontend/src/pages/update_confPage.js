@@ -28,7 +28,7 @@ class Update_ConfPage extends BaseClass {
      */
     async fetchFlight() {
         // Retrieve cookie.
-        let flightInfo = document.cookie;
+        let flightInfo = localStorage.getItem("flightId");
 
         // Retrieve the flight by flightId
         const flight = await this.client.getFlight(flightInfo, this.errorHandler);
